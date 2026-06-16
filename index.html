@@ -1,0 +1,1226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Green Clean House LLC — Eco-Friendly Home Cleaning · North Bergen, NJ</title>
+<meta name="description" content="Professional residential cleaning in North Bergen, NJ. Plant-based products, licensed & insured. Weekly, biweekly, and one-time cleans.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --euc:      #3A7D69;
+  --euc-deep: #2C6151;
+  --pine:     #15302A;
+  --sun:      #F2C879;
+  --sun-deep: #D99E2B;
+  --mist:     #EDF3F0;
+  --cloud:    #FFFFFF;
+  --sage:     #5E726B;
+  --line:     #D4E2DB;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', system-ui, Arial, sans-serif;
+  background: var(--cloud);
+  color: var(--pine);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+section { padding: 96px 0; }
+.eyebrow {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--euc);
+  margin-bottom: 14px;
+}
+
+/* ---- NAV ---- */
+nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  background: rgba(255,255,255,.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+  transition: box-shadow .25s;
+}
+nav.scrolled { box-shadow: 0 2px 28px rgba(21,48,42,.1); }
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--pine);
+}
+.nav-logo .logomark { width: 44px; height: 44px; color: var(--euc); }
+.nav-wordmark { font-family: 'Fraunces', serif; font-weight: 600; font-size: 19px; letter-spacing: -.01em; line-height: 1.05; }
+.nav-wordmark small { display: block; font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: var(--euc); }
+.nav-links { display: flex; align-items: center; gap: 34px; list-style: none; }
+.nav-links a {
+  font-size: 14.5px; font-weight: 500; color: var(--sage);
+  text-decoration: none; transition: color .15s;
+}
+.nav-links a:hover { color: var(--pine); }
+.nav-cta {
+  background: var(--euc) !important;
+  color: #fff !important;
+  padding: 10px 22px;
+  border-radius: 50px;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  transition: background .15s, transform .15s !important;
+  box-shadow: 0 4px 14px rgba(58,125,105,.35);
+}
+.nav-cta:hover { background: var(--euc-deep) !important; transform: translateY(-1px); }
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  flex-direction: column;
+  gap: 5px;
+}
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--pine); border-radius: 2px; transition: .2s; }
+.mobile-nav {
+  display: none;
+  background: var(--cloud);
+  border-top: 1px solid var(--line);
+  padding: 16px 28px 28px;
+  flex-direction: column;
+  gap: 0;
+}
+.mobile-nav.open { display: flex; }
+.mobile-nav a {
+  display: block;
+  padding: 13px 0;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--pine);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+}
+.mobile-nav a:last-child { border: none; }
+.mobile-nav .m-cta {
+  margin-top: 18px;
+  background: var(--euc);
+  color: #fff !important;
+  text-align: center;
+  border-radius: 50px;
+  padding: 14px;
+  font-weight: 600;
+}
+
+/* ---- HERO ---- */
+.hero {
+  background: var(--pine);
+  color: #fff;
+  padding: 160px 0 110px;
+  position: relative;
+  overflow: hidden;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.hero-bg .blob1 {
+  position: absolute;
+  right: -120px; top: -80px;
+  width: 720px; height: 720px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(58,125,105,.18) 0%, transparent 70%);
+}
+.hero-bg .blob2 {
+  position: absolute;
+  left: -60px; bottom: -100px;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(242,200,121,.07) 0%, transparent 70%);
+}
+.hero-bg-mark {
+  position: absolute;
+  right: -40px; top: 50%;
+  transform: translateY(-50%);
+  width: 580px; height: 580px;
+  opacity: .05;
+  color: var(--euc);
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(242,200,121,.12);
+  border: 1px solid rgba(242,200,121,.28);
+  color: var(--sun);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  border-radius: 50px;
+  margin-bottom: 30px;
+}
+.hero-badge svg { width: 15px; height: 15px; }
+.hero h1 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: clamp(50px, 7.5vw, 90px);
+  line-height: .96;
+  letter-spacing: -.03em;
+  margin-bottom: 26px;
+}
+.hero h1 em { color: var(--sun); font-style: normal; }
+.hero .lead {
+  font-size: 19px;
+  color: #BFD3CB;
+  max-width: 50ch;
+  line-height: 1.65;
+  margin-bottom: 42px;
+}
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; margin-bottom: 52px; }
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: var(--euc);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 17px 34px;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 10px 30px rgba(58,125,105,.45);
+  transition: background .15s, transform .15s, box-shadow .15s;
+}
+.btn-primary:hover { background: var(--euc-deep); transform: translateY(-2px); box-shadow: 0 16px 40px rgba(58,125,105,.55); }
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: rgba(255,255,255,.78);
+  font-size: 16px;
+  font-weight: 500;
+  padding: 17px 28px;
+  border-radius: 50px;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,.18);
+  transition: border-color .15s, color .15s, background .15s;
+}
+.btn-ghost:hover { border-color: rgba(255,255,255,.45); color: #fff; background: rgba(255,255,255,.06); }
+.hero-trust { display: flex; flex-wrap: wrap; gap: 24px; }
+.trust-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #8FAaa1;
+}
+.trust-pill svg { width: 15px; height: 15px; color: var(--euc); flex: 0 0 auto; }
+
+/* Hero visual */
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero-card {
+  width: 340px;
+  aspect-ratio: 1;
+  border-radius: 56px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+.hero-card svg.big-mark { width: 210px; height: 210px; }
+.hero-card .ping {
+  position: absolute;
+  top: -14px; right: -14px;
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: var(--euc);
+  display: grid;
+  place-items: center;
+  border: 3px solid var(--pine);
+}
+.hero-card .ping svg { width: 22px; height: 22px; color: #fff; }
+.hero-card .tag {
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--cloud);
+  color: var(--pine);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: 50px;
+  white-space: nowrap;
+  box-shadow: 0 8px 28px rgba(21,48,42,.25);
+  border: 1px solid var(--line);
+}
+.hero-card .tag span { color: var(--euc); }
+
+/* ---- TRUST BAR ---- */
+.trust-bar {
+  background: var(--euc);
+  color: #fff;
+}
+.trust-bar-inner {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.trust-cell {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 18px 22px;
+  font-size: 14.5px;
+  font-weight: 500;
+  flex: 1;
+  justify-content: center;
+  min-width: 170px;
+  border-right: 1px solid rgba(255,255,255,.18);
+}
+.trust-cell:last-child { border-right: none; }
+.trust-cell svg { width: 19px; height: 19px; color: var(--sun); flex: 0 0 auto; }
+
+/* ---- SERVICES ---- */
+.services { background: var(--mist); }
+.sec-header { margin-bottom: 52px; }
+.sec-header h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: clamp(30px, 4.5vw, 50px);
+  letter-spacing: -.02em;
+  margin-bottom: 10px;
+}
+.sec-header p { font-size: 18px; color: var(--sage); max-width: 58ch; }
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.service-card {
+  background: var(--cloud);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 38px 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  transition: transform .22s, box-shadow .22s;
+  position: relative;
+  overflow: hidden;
+}
+.service-card:hover { transform: translateY(-5px); box-shadow: 0 24px 56px rgba(21,48,42,.13); }
+.service-card.featured {
+  background: var(--pine);
+  border-color: transparent;
+  color: #fff;
+}
+.service-card.featured::before {
+  content: 'Most Popular';
+  position: absolute;
+  top: 22px; right: -26px;
+  background: var(--sun);
+  color: var(--pine);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 5px 40px;
+  transform: rotate(35deg);
+}
+.svc-icon {
+  width: 56px; height: 56px;
+  border-radius: 16px;
+  background: var(--mist);
+  display: grid;
+  place-items: center;
+  margin-bottom: 24px;
+  flex: 0 0 auto;
+}
+.service-card.featured .svc-icon { background: rgba(255,255,255,.1); }
+.svc-icon svg { width: 28px; height: 28px; color: var(--euc); }
+.service-card.featured .svc-icon svg { color: var(--sun); }
+.svc-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--euc);
+  background: rgba(58,125,105,.1);
+  padding: 4px 12px;
+  border-radius: 50px;
+  margin-bottom: 14px;
+}
+.service-card.featured .svc-tag { color: var(--sun); background: rgba(242,200,121,.18); }
+.service-card h3 { font-family: 'Fraunces', serif; font-size: 23px; margin-bottom: 10px; font-weight: 600; }
+.service-card .desc { font-size: 15px; color: var(--sage); line-height: 1.65; margin-bottom: 28px; flex: 1; }
+.service-card.featured .desc { color: #A8C4BB; }
+.includes { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.includes li { display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; color: var(--sage); }
+.service-card.featured .includes li { color: #BFD3CB; }
+.includes li::before {
+  content: '';
+  flex: 0 0 18px;
+  width: 18px; height: 18px;
+  margin-top: 2px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Ccircle cx='9' cy='9' r='8' fill='%23EDF3F0'/%3E%3Cpath d='M5 9l3 3 5-6' stroke='%233A7D69' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.service-card.featured .includes li::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Ccircle cx='9' cy='9' r='8' fill='rgba(255,255,255,0.12)'/%3E%3Cpath d='M5 9l3 3 5-6' stroke='%23F2C879' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+}
+
+/* ---- WHY US ---- */
+.why { background: var(--cloud); }
+.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.why-card {
+  background: var(--mist);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 34px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  transition: transform .2s;
+}
+.why-card:hover { transform: translateY(-3px); }
+.why-icon {
+  flex: 0 0 52px;
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  background: var(--cloud);
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+}
+.why-icon svg { width: 25px; height: 25px; color: var(--euc); }
+.why-card h3 { font-family: 'Fraunces', serif; font-size: 19px; margin-bottom: 6px; font-weight: 600; }
+.why-card p { font-size: 15px; color: var(--sage); line-height: 1.65; }
+
+/* ---- HOW IT WORKS ---- */
+.how { background: var(--pine); color: #fff; }
+.how .eyebrow { color: var(--sun); }
+.how .sec-header h2 { color: #fff; }
+.how .sec-header p { color: #8FAaa1; }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; position: relative; }
+.steps::after {
+  content: '';
+  position: absolute;
+  top: 25px; left: calc(16.67% + 16px);
+  width: calc(66.66% - 32px);
+  height: 1px;
+  background: linear-gradient(90deg, rgba(58,125,105,.6), rgba(58,125,105,.6));
+}
+.step { display: flex; flex-direction: column; gap: 20px; position: relative; z-index: 1; }
+.step-num {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: var(--euc);
+  color: #fff;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 22px;
+  display: grid;
+  place-items: center;
+  border: 3px solid var(--pine);
+  outline: 1px solid var(--euc);
+  flex: 0 0 auto;
+}
+.step h3 { font-family: 'Fraunces', serif; font-size: 21px; color: #fff; margin-bottom: 6px; font-weight: 600; }
+.step p { font-size: 15.5px; color: #8FAaa1; line-height: 1.65; }
+
+/* ---- TESTIMONIALS ---- */
+.testimonials { background: var(--mist); }
+.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.testi-card {
+  background: var(--cloud);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.stars { display: flex; gap: 3px; }
+.stars svg { width: 18px; height: 18px; fill: var(--sun); color: var(--sun); }
+blockquote {
+  font-size: 16px;
+  color: var(--pine);
+  line-height: 1.7;
+  flex: 1;
+  font-style: italic;
+}
+blockquote::before { content: '\201C'; }
+blockquote::after  { content: '\201D'; }
+.testi-author { display: flex; align-items: center; gap: 13px; }
+.author-av {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--euc);
+  color: #fff;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 18px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+}
+.testi-author .tname { font-weight: 600; font-size: 15px; color: var(--pine); }
+.testi-author .tloc  { font-size: 13px; color: var(--sage); }
+
+/* ---- CTA BANNER ---- */
+.cta-banner {
+  background: var(--euc);
+  padding: 88px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-banner::before, .cta-banner::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,.06);
+}
+.cta-banner::before { width: 380px; height: 380px; top: -120px; right: -80px; }
+.cta-banner::after  { width: 280px; height: 280px; bottom: -90px; left: -50px; }
+.cta-banner h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: clamp(30px, 5vw, 52px);
+  color: #fff;
+  letter-spacing: -.02em;
+  margin-bottom: 14px;
+}
+.cta-banner p { font-size: 18px; color: rgba(255,255,255,.78); max-width: 52ch; margin: 0 auto 36px; line-height: 1.65; }
+.btn-white {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: #fff;
+  color: var(--euc-deep);
+  font-size: 16px;
+  font-weight: 700;
+  padding: 17px 38px;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 10px 30px rgba(0,0,0,.18);
+  position: relative;
+  z-index: 1;
+  transition: transform .15s, box-shadow .15s;
+}
+.btn-white:hover { transform: translateY(-2px); box-shadow: 0 18px 44px rgba(0,0,0,.22); }
+
+/* ---- CONTACT ---- */
+.contact { background: var(--cloud); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: start; }
+.contact-info { display: flex; flex-direction: column; gap: 22px; }
+.cinfo-row { display: flex; gap: 16px; align-items: flex-start; }
+.cinfo-icon {
+  flex: 0 0 50px;
+  width: 50px; height: 50px;
+  border-radius: 14px;
+  background: var(--mist);
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+}
+.cinfo-icon svg { width: 22px; height: 22px; color: var(--euc); }
+.cinfo-label { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--sage); margin-bottom: 3px; }
+.cinfo-val { font-size: 17px; font-weight: 500; color: var(--pine); }
+.cinfo-val a { color: var(--pine); text-decoration: none; }
+.cinfo-val a:hover { color: var(--euc); }
+.cinfo-note { font-size: 14.5px; color: var(--sage); margin-top: 2px; }
+.service-area { background: var(--mist); border: 1px solid var(--line); border-radius: 16px; padding: 20px 22px; margin-top: 6px; }
+.service-area .label { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--euc); margin-bottom: 8px; }
+.area-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.area-chip {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--sage);
+  background: var(--cloud);
+  border: 1px solid var(--line);
+  padding: 5px 14px;
+  border-radius: 50px;
+}
+
+.contact-form {
+  background: var(--mist);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.contact-form h3 { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 600; margin-bottom: 2px; }
+.contact-form .sub { font-size: 15px; color: var(--sage); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.fg { display: flex; flex-direction: column; gap: 6px; }
+.fg label { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--sage); }
+.fg input, .fg select, .fg textarea {
+  background: var(--cloud);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 13px 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  color: var(--pine);
+  outline: none;
+  transition: border-color .15s, box-shadow .15s;
+  width: 100%;
+  appearance: none;
+}
+.fg input:focus, .fg select:focus, .fg textarea:focus {
+  border-color: var(--euc);
+  box-shadow: 0 0 0 3px rgba(58,125,105,.14);
+}
+.fg input::placeholder, .fg textarea::placeholder { color: var(--line); }
+.fg textarea { resize: vertical; min-height: 104px; }
+.fg select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235E726B' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 40px; cursor: pointer; }
+.submit-btn {
+  background: var(--euc);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 16px 32px;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: background .15s, transform .15s, box-shadow .15s;
+  box-shadow: 0 6px 20px rgba(58,125,105,.35);
+}
+.submit-btn:hover { background: var(--euc-deep); transform: translateY(-1px); box-shadow: 0 10px 28px rgba(58,125,105,.45); }
+
+/* ---- FOOTER ---- */
+footer {
+  background: var(--pine);
+  color: #BFD3CB;
+  padding: 72px 0 36px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 56px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  margin-bottom: 36px;
+}
+.footer-brand .fmark { width: 54px; height: 54px; color: #fff; display: block; margin-bottom: 16px; }
+.footer-brand .fname { font-family: 'Fraunces', serif; font-weight: 600; font-size: 21px; color: #fff; margin-bottom: 5px; }
+.footer-brand .ftagline { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--sun); margin-bottom: 18px; }
+.footer-brand p { font-size: 14.5px; max-width: 38ch; line-height: 1.75; }
+.footer-col h4 { font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 20px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+.footer-col ul li { font-size: 14.5px; }
+.footer-col ul a { color: #BFD3CB; text-decoration: none; transition: color .15s; }
+.footer-col ul a:hover { color: #fff; }
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 13px;
+  color: rgba(255,255,255,.35);
+}
+.footer-badges { display: flex; gap: 16px; }
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255,255,255,.5);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 50px;
+  padding: 5px 14px;
+}
+.badge svg { width: 13px; height: 13px; color: var(--euc); }
+
+/* ---- SCROLL ANIMATIONS ---- */
+.fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .5s ease, transform .5s ease;
+}
+.fade-up.visible { opacity: 1; transform: none; }
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+  .services-grid { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr; gap: 36px; }
+  .steps::after { display: none; }
+  .testi-grid { grid-template-columns: 1fr 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .footer-brand { grid-column: 1 / -1; }
+}
+@media (max-width: 640px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  section { padding: 64px 0; }
+  .hero { padding: 120px 0 80px; min-height: auto; }
+  .testi-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .trust-bar-inner { flex-direction: column; }
+  .trust-cell { border-right: none; border-bottom: 1px solid rgba(255,255,255,.15); }
+  .trust-cell:last-child { border-bottom: none; }
+  .service-card.featured::before { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .fade-up { opacity: 1; transform: none; transition: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== SHARED MARK SYMBOL ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 120 120">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M 51.87 21.41 Q 60.00 14.00 68.13 21.41 L 98.35 48.94 Q 105.00 55.00 104.30 63.97 L 102.02 93.04 Q 101.00 106.00 88.00 106.00 L 32.00 106.00 Q 19.00 106.00 17.98 93.04 L 15.70 63.97 Q 15.00 55.00 21.65 48.94 Z M 47.00 106.00 L 47.00 79.00 Q 47.00 66.00 60.00 66.00 Q 73.00 66.00 73.00 79.00 L 73.00 106.00 Z" fill="currentColor"/>
+    <path d="M 108.00 29.00 L 96.68 32.68 L 93.00 44.00 L 89.32 32.68 L 78.00 29.00 L 89.32 25.32 L 93.00 14.00 L 96.68 25.32 Z" fill="var(--spk,#F2C879)"/>
+    <path d="M 114.50 52.00 L 109.63 53.63 L 108.00 58.50 L 106.37 53.63 L 101.50 52.00 L 106.37 50.37 L 108.00 45.50 L 109.63 50.37 Z" fill="var(--spk,#F2C879)"/>
+  </symbol>
+</svg>
+
+<!-- ===== NAV ===== -->
+<nav id="main-nav">
+  <div class="wrap nav-inner">
+    <a href="#home" class="nav-logo" aria-label="Green Clean House home">
+      <svg class="logomark" viewBox="0 0 120 120" aria-hidden="true"><use href="#mark"/></svg>
+      <div class="nav-wordmark">Green Clean House <small>LLC · North Bergen, NJ</small></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#why">Why Us</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#contact" class="nav-cta">Book a Clean</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-nav" id="mobile-nav" role="menu">
+    <a href="#services" role="menuitem">Services</a>
+    <a href="#how" role="menuitem">How It Works</a>
+    <a href="#why" role="menuitem">Why Us</a>
+    <a href="#contact" role="menuitem">Contact</a>
+    <a href="#contact" class="m-cta" role="menuitem">Book a Clean</a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero" id="home">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="blob1"></div>
+    <div class="blob2"></div>
+    <svg class="hero-bg-mark" viewBox="0 0 120 120"><use href="#mark"/></svg>
+  </div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge" aria-label="Licensed and eco-friendly">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          Licensed &amp; Insured · Eco-Friendly
+        </div>
+        <h1>A naturally <em>cleaner</em> home.</h1>
+        <p class="lead">Professional residential cleaning in North Bergen, NJ — powered by plant-based products and people who genuinely care about your home.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            Book a Clean
+          </a>
+          <a href="#services" class="btn-ghost">
+            See our services
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="hero-trust">
+          <div class="trust-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 12l2 2 4-4"/><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/></svg>
+            Licensed &amp; insured
+          </div>
+          <div class="trust-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s-7-6-7-11a7 7 0 0114 0c0 5-7 11-7 11z"/><circle cx="12" cy="11" r="2.4"/></svg>
+            North Bergen, NJ
+          </div>
+          <div class="trust-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/></svg>
+            We bring all supplies
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-card">
+          <svg class="big-mark" viewBox="0 0 120 120" style="color:#fff"><use href="#mark"/></svg>
+          <div class="ping">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4"/></svg>
+          </div>
+          <div class="tag">Spotless, the <span>greener</span> way.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== TRUST BAR ===== -->
+<div class="trust-bar" role="list" aria-label="Why customers trust us">
+  <div class="trust-bar-inner wrap">
+    <div class="trust-cell" role="listitem">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s-8-5.5-8-11a8 8 0 0116 0c0 5.5-8 11-8 11z"/><circle cx="12" cy="11" r="2.6"/></svg>
+      Plant-Based Products
+    </div>
+    <div class="trust-cell" role="listitem">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 12l2 2 4-4"/><rect x="3" y="3" width="18" height="18" rx="3"/></svg>
+      Licensed &amp; Insured
+    </div>
+    <div class="trust-cell" role="listitem">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      5-Star Rated
+    </div>
+    <div class="trust-cell" role="listitem">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      Flexible Scheduling
+    </div>
+    <div class="trust-cell" role="listitem">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z"/></svg>
+      Satisfaction Guaranteed
+    </div>
+  </div>
+</div>
+
+<!-- ===== SERVICES ===== -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="sec-header fade-up">
+      <span class="eyebrow">What we offer</span>
+      <h2>The right clean for every home</h2>
+      <p>Whether you need a quick refresh or a full reset, we'll match the clean to what your home actually needs — using plant-based products safe for kids and pets.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card fade-up">
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path d="M9 22V12h6v10"/></svg></div>
+        <span class="svc-tag">Weekly / Biweekly</span>
+        <h3>Regular Clean</h3>
+        <p class="desc">The backbone of a consistently fresh home. We handle the essentials so you can spend your time on what matters most.</p>
+        <ul class="includes">
+          <li>Kitchen surfaces, sinks &amp; appliances</li>
+          <li>Bathrooms — toilets, tubs &amp; mirrors</li>
+          <li>Vacuuming &amp; mopping all floors</li>
+          <li>Dusting &amp; tidying throughout</li>
+          <li>Trash emptied &amp; liners replaced</li>
+        </ul>
+      </div>
+
+      <div class="service-card featured fade-up">
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+        <span class="svc-tag">Most thorough</span>
+        <h3>Deep Clean</h3>
+        <p class="desc">For when you want a true reset. We go into every corner, behind every appliance, and under every surface.</p>
+        <ul class="includes">
+          <li>Everything in a Regular Clean</li>
+          <li>Inside oven, fridge &amp; microwave</li>
+          <li>Baseboards, vents &amp; ceiling fans</li>
+          <li>Inside cabinets &amp; drawers</li>
+          <li>Interior windows, sills &amp; frames</li>
+          <li>Grout scrubbing in baths &amp; kitchen</li>
+        </ul>
+      </div>
+
+      <div class="service-card fade-up">
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 3H3a2 2 0 00-2 2v14a2 2 0 002 2h2M19 3h2a2 2 0 012 2v14a2 2 0 01-2 2h-2M12 3v18M8 7h8M8 12h8M8 17h8"/></svg></div>
+        <span class="svc-tag">One-time</span>
+        <h3>Move-In / Move-Out</h3>
+        <p class="desc">Leave your old place spotless or welcome yourself into a fresh start. Perfect for tenants, landlords, and real estate turnovers.</p>
+        <ul class="includes">
+          <li>Full deep clean of all rooms</li>
+          <li>Inside all appliances &amp; cabinets</li>
+          <li>Closets &amp; storage areas</li>
+          <li>Bathroom detail clean</li>
+          <li>Final walk-through included</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHY US ===== -->
+<section class="why" id="why">
+  <div class="wrap">
+    <div class="sec-header fade-up">
+      <span class="eyebrow">Why Green Clean House</span>
+      <h2>Cleaning you can actually count on</h2>
+      <p>We're a local North Bergen business — not a franchise. That means you get the same careful team every time, and we genuinely care about the result.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card fade-up">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s-8-5.5-8-11a8 8 0 0116 0c0 5.5-8 11-8 11z"/><circle cx="12" cy="11" r="2.6"/></svg></div>
+        <div>
+          <h3>Plant-based, low-tox products</h3>
+          <p>Professional-grade eco-friendly cleaners — effective, safe for kids and pets, and gentler on the environment. We bring everything we need; you don't lift a finger.</p>
+        </div>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 12l2 2 4-4"/><rect x="3" y="3" width="18" height="18" rx="3"/></svg></div>
+        <div>
+          <h3>Licensed, insured &amp; trustworthy</h3>
+          <p>Fully licensed and insured so you can hand over your keys with total confidence. Background-checked team, consistent quality, and complete respect for your home and privacy.</p>
+        </div>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
+        <div>
+          <h3>Flexible, no-contract scheduling</h3>
+          <p>Weekly, biweekly, monthly, or just once — you pick the frequency that fits your life. Easy to reschedule and no long-term contracts required.</p>
+        </div>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z"/></svg></div>
+        <div>
+          <h3>Locally rooted &amp; genuinely caring</h3>
+          <p>We live in this community. When you book with Green Clean House, you're supporting a local business that treats every home like our own — not a number in a national queue.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section class="how" id="how">
+  <div class="wrap">
+    <div class="sec-header fade-up">
+      <span class="eyebrow">Simple process</span>
+      <h2>Get a clean home in three steps</h2>
+      <p>We've made it as simple as possible — reach out, and we'll take care of the rest.</p>
+    </div>
+    <div class="steps">
+      <div class="step fade-up">
+        <div class="step-num" aria-hidden="true">1</div>
+        <div>
+          <h3>Book in minutes</h3>
+          <p>Call, text, or fill out the quick form. Tell us your home size, preferred date, and the type of clean you need. We'll confirm same day.</p>
+        </div>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num" aria-hidden="true">2</div>
+        <div>
+          <h3>We show up, fully equipped</h3>
+          <p>Our team arrives on time with all supplies and eco-friendly products. No need to prep — just let us in and we'll handle everything.</p>
+        </div>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num" aria-hidden="true">3</div>
+        <div>
+          <h3>Enjoy your clean home</h3>
+          <p>Walk back into a fresh, spotless space. If anything isn't right, tell us within 24 hours and we'll make it right — no questions asked.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="testimonials" id="testimonials">
+  <div class="wrap">
+    <div class="sec-header fade-up">
+      <span class="eyebrow">What neighbors say</span>
+      <h2>Homes they love coming back to</h2>
+      <p>Real feedback from the community. We take every home personally.</p>
+    </div>
+    <div class="testi-grid">
+
+      <div class="testi-card fade-up">
+        <div class="stars" aria-label="5 out of 5 stars">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <blockquote>They transformed our apartment after a chaotic move-in. Every corner was spotless and they used products that didn't give my daughter any reactions. We've been booking biweekly ever since.</blockquote>
+        <div class="testi-author">
+          <div class="author-av" aria-hidden="true">M</div>
+          <div>
+            <div class="tname">Maria S.</div>
+            <div class="tloc">North Bergen, NJ</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card fade-up">
+        <div class="stars" aria-label="5 out of 5 stars">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <blockquote>I manage a few rental units in the area and Green Clean House handles all my turnovers. Reliable, thorough, and they always communicate if anything unexpected comes up. Couldn't ask for more.</blockquote>
+        <div class="testi-author">
+          <div class="author-av" aria-hidden="true">J</div>
+          <div>
+            <div class="tname">James R.</div>
+            <div class="tloc">Weehawken, NJ</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card fade-up">
+        <div class="stars" aria-label="5 out of 5 stars">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <blockquote>I specifically looked for someone who doesn't use harsh chemicals because of my cat. Green Clean uses products that are totally safe, and my apartment has never looked better. Will keep booking.</blockquote>
+        <div class="testi-author">
+          <div class="author-av" aria-hidden="true">S</div>
+          <div>
+            <div class="tname">Sofia K.</div>
+            <div class="tloc">Union City, NJ</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA BANNER ===== -->
+<div class="cta-banner">
+  <div class="wrap" style="position:relative;z-index:1">
+    <h2>Ready for a cleaner, greener home?</h2>
+    <p>Book your first clean today — no contracts, no hassle. Just a spotless home you'll love coming back to.</p>
+    <a href="#contact" class="btn-white">
+      Get a free quote
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- ===== CONTACT ===== -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="sec-header fade-up">
+      <span class="eyebrow">Get in touch</span>
+      <h2>Book a clean or ask us anything</h2>
+      <p>We're quick to respond — usually same day. Fill out the form or reach out directly.</p>
+    </div>
+    <div class="contact-grid">
+
+      <div class="contact-info fade-up">
+        <div class="cinfo-row">
+          <div class="cinfo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 5l4-1 2 5-3 2a14 14 0 007 7l2-3 5 2-1 4a2 2 0 01-2 2A18 18 0 013 7a2 2 0 010-2z"/></svg></div>
+          <div>
+            <div class="cinfo-label">Phone / Text</div>
+            <div class="cinfo-val"><a href="tel:+12017131440">(201) 713-144X</a></div>
+            <div class="cinfo-note">Call or text — we respond fast</div>
+          </div>
+        </div>
+        <div class="cinfo-row">
+          <div class="cinfo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div>
+            <div class="cinfo-label">Email</div>
+            <div class="cinfo-val"><a href="mailto:hello@greencleanhouse.com">hello@greencleanhouse.com</a></div>
+          </div>
+        </div>
+        <div class="cinfo-row">
+          <div class="cinfo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s-7-6-7-11a7 7 0 0114 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+          <div>
+            <div class="cinfo-label">Address</div>
+            <div class="cinfo-val">130 77th St #3, North Bergen, NJ</div>
+          </div>
+        </div>
+        <div class="cinfo-row">
+          <div class="cinfo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+          <div>
+            <div class="cinfo-label">Hours</div>
+            <div class="cinfo-val">Mon – Sat · 8 am – 6 pm</div>
+          </div>
+        </div>
+        <div class="service-area">
+          <div class="label">Service Area</div>
+          <div class="area-chips">
+            <span class="area-chip">North Bergen</span>
+            <span class="area-chip">Weehawken</span>
+            <span class="area-chip">Union City</span>
+            <span class="area-chip">Secaucus</span>
+            <span class="area-chip">Jersey City</span>
+            <span class="area-chip">Hoboken</span>
+            <span class="area-chip">Guttenberg</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form fade-up">
+        <h3>Request a free quote</h3>
+        <p class="sub">We'll get back to you within a few hours.</p>
+        <div class="form-row">
+          <div class="fg">
+            <label for="fname">First name</label>
+            <input type="text" id="fname" name="fname" placeholder="Maria" autocomplete="given-name">
+          </div>
+          <div class="fg">
+            <label for="lname">Last name</label>
+            <input type="text" id="lname" name="lname" placeholder="Smith" autocomplete="family-name">
+          </div>
+        </div>
+        <div class="fg">
+          <label for="phone">Phone / text</label>
+          <input type="tel" id="phone" name="phone" placeholder="(201) 555-0100" autocomplete="tel">
+        </div>
+        <div class="fg">
+          <label for="service">Service type</label>
+          <select id="service" name="service">
+            <option value="" disabled selected>Select a service…</option>
+            <option value="regular">Regular Clean (weekly / biweekly)</option>
+            <option value="deep">Deep Clean</option>
+            <option value="move">Move-In / Move-Out Clean</option>
+            <option value="other">Not sure — let's talk</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label for="message">Anything else we should know?</label>
+          <textarea id="message" name="message" placeholder="Home size, pets, preferred date, special requests…"></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send my request &rarr;</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <svg class="fmark" viewBox="0 0 120 120" aria-hidden="true"><use href="#mark"/></svg>
+        <div class="fname">Green Clean House LLC</div>
+        <div class="ftagline">Eco · Friendly · Home · Cleaning</div>
+        <p>Professional, plant-based residential cleaning for homes in North Bergen, NJ and the surrounding communities. Licensed, insured, and locally rooted.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Regular Clean</a></li>
+          <li><a href="#services">Deep Clean</a></li>
+          <li><a href="#services">Move-In / Move-Out</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+12017131440">(201) 713-144X</a></li>
+          <li><a href="mailto:hello@greencleanhouse.com">hello@greencleanhouse.com</a></li>
+          <li>130 77th St #3<br>North Bergen, NJ</li>
+          <li>Mon–Sat, 8 am – 6 pm</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Green Clean House LLC &nbsp;&middot;&nbsp; North Bergen, NJ</span>
+      <div class="footer-badges">
+        <span class="badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 12l2 2 4-4"/><rect x="3" y="3" width="18" height="18" rx="3"/></svg>
+          Licensed &amp; Insured
+        </span>
+        <span class="badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s-8-5.5-8-11a8 8 0 0116 0c0 5.5-8 11-8 11z"/><circle cx="12" cy="11" r="2.6"/></svg>
+          Eco-Friendly
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // Nav scroll shadow
+  var nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', function () {
+    nav.classList.toggle('scrolled', window.scrollY > 24);
+  }, { passive: true });
+
+  // Mobile nav
+  var hamburger = document.getElementById('hamburger');
+  var mobileNav = document.getElementById('mobile-nav');
+  hamburger.addEventListener('click', function () {
+    var open = mobileNav.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', String(open));
+  });
+  mobileNav.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      mobileNav.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Fade-up on scroll with per-sibling stagger
+  var fadeEls = document.querySelectorAll('.fade-up');
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      var el = entry.target;
+      var siblings = Array.from(el.parentElement.children).filter(function (c) {
+        return c.classList.contains('fade-up');
+      });
+      var idx = siblings.indexOf(el);
+      el.style.transitionDelay = (idx * 90) + 'ms';
+      el.classList.add('visible');
+      io.unobserve(el);
+    });
+  }, { threshold: 0.1 });
+  fadeEls.forEach(function (el) { io.observe(el); });
+})();
+</script>
+
+</body>
+</html>

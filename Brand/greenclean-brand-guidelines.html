@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Green Clean House — Brand Guidelines</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --euc:#3A7D69;        /* Eucalyptus  – primary */
+    --euc-deep:#2C6151;   /* darker tint for text-on-light */
+    --pine:#15302A;       /* Deep Pine   – ink */
+    --sun:#F2C879;        /* Sunbeam     – accent */
+    --sun-deep:#D99E2B;   /* accent for small text on light */
+    --mist:#EDF3F0;       /* Mist        – page bg */
+    --cloud:#FFFFFF;      /* Cloud       – cards */
+    --sage:#5E726B;       /* Sage Gray   – secondary text */
+    --line:#D4E2DB;       /* hairline */
+    --maxw:980px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--mist);color:var(--pine);
+    font-family:"Inter",system-ui,Arial,sans-serif;
+    font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .display{font-family:"Fraunces",Georgia,serif;font-weight:600;line-height:1.04;letter-spacing:-.01em}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--euc);margin:0 0 14px}
+  section{padding:74px 0;border-top:1px solid var(--line)}
+  section:first-of-type{border-top:none}
+  h2.sec{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:clamp(28px,4.4vw,42px);margin:0 0 10px;letter-spacing:-.015em}
+  .lead{color:var(--sage);max-width:60ch;margin:0 0 30px}
+  p{margin:0 0 18px}
+  a{color:var(--euc-deep)}
+  .muted{color:var(--sage)}
+  .card{background:var(--cloud);border:1px solid var(--line);border-radius:20px}
+  .grid{display:grid;gap:20px}
+
+  /* ---------- COVER ---------- */
+  .cover{background:var(--pine);color:var(--cloud);border-top:none;padding:96px 0 84px;position:relative;overflow:hidden}
+  .cover .wrap{position:relative;z-index:2}
+  .cover .eyebrow{color:var(--sun)}
+  .cover h1{font-family:"Fraunces",Georgia,serif;font-weight:600;letter-spacing:-.02em;
+    font-size:clamp(46px,9vw,92px);line-height:.98;margin:18px 0 22px}
+  .cover h1 .lc{display:block}
+  .cover .subtitle{color:#BFD3CB;max-width:46ch;font-size:18px;margin:0 0 4px}
+  .cover .docmeta{margin-top:42px;display:flex;flex-wrap:wrap;gap:30px;font-size:13px;letter-spacing:.04em;color:#8FAaa1}
+  .cover .docmeta b{color:var(--cloud);font-weight:600;display:block;font-size:14px;letter-spacing:0}
+  .cover-mark{position:absolute;right:-60px;top:-30px;width:440px;opacity:.10;z-index:1}
+  .covermark-inline{width:96px;display:block;margin-bottom:6px}
+
+  /* ---------- logo decode ---------- */
+  .decode{display:grid;grid-template-columns:1.1fr 1fr;gap:46px;align-items:center}
+  .decode .markbox{background:var(--cloud);border:1px solid var(--line);border-radius:24px;padding:48px;display:flex;justify-content:center}
+  .decode .markbox svg{width:230px;height:230px}
+  .decode-row{display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--line)}
+  .decode-row:last-child{border-bottom:none}
+  .chip{flex:0 0 auto;width:54px;height:54px;border-radius:14px;display:grid;place-items:center;font-family:"Fraunces",serif;color:#fff;font-weight:600;font-size:20px}
+  .decode-row h4{margin:2px 0 3px;font-size:18px;font-family:"Fraunces",serif;font-weight:600}
+  .decode-row p{margin:0;color:var(--sage);font-size:15px}
+
+  /* ---------- logo gallery ---------- */
+  .logo-main{background:var(--cloud);border:1px solid var(--line);border-radius:24px;padding:56px;display:flex;justify-content:center;margin-bottom:20px}
+  .logo-main svg{width:300px;max-width:80%}
+  .logo-trio{grid-template-columns:repeat(3,1fr)}
+  .swatch-tile{padding:34px 22px;display:flex;align-items:center;justify-content:center;border-radius:18px;min-height:150px}
+  .tile-cap{font-size:12.5px;letter-spacing:.04em;color:var(--sage);margin:12px 2px 0}
+  .on-light{background:var(--mist);border:1px solid var(--line)}
+  .on-cloud{background:var(--cloud);border:1px solid var(--line)}
+  .on-pine{background:var(--pine)}
+  .on-euc{background:var(--euc)}
+  .swatch-tile svg{width:118px;height:118px}
+
+  /* clear space + min size */
+  .specs{grid-template-columns:1fr 1fr}
+  .spec-card{padding:34px}
+  .clearbox{position:relative;background:var(--mist);border-radius:14px;padding:32px;display:flex;justify-content:center;border:1px dashed var(--euc)}
+  .clearbox .inner{outline:2px dashed var(--sun);outline-offset:18px;border-radius:6px;display:inline-flex}
+  .clearbox svg{width:120px;height:120px;display:block}
+  .minrow{display:flex;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-top:8px}
+  .minrow figure{margin:0;text-align:center}
+  .minrow .m1 svg{width:120px}.minrow .m2 svg{width:64px}.minrow .m3 svg{width:34px}
+  .minrow figcaption{font-size:12px;color:var(--sage);margin-top:8px}
+
+  /* ---------- misuse ---------- */
+  .dont-grid{grid-template-columns:repeat(3,1fr)}
+  .dont{padding:22px;text-align:center}
+  .dont .frame{background:var(--mist);border-radius:14px;height:118px;display:grid;place-items:center;overflow:hidden;position:relative}
+  .dont .frame svg{width:78px;height:78px}
+  .dont .x{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-size:13.5px;color:var(--pine);font-weight:500}
+  .dont .x b{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:#C0493B;color:#fff;font-size:13px;line-height:1}
+  .d-stretch svg{transform:scaleX(1.6)}
+  .d-rotate svg{transform:rotate(18deg)}
+  .d-busy{background:linear-gradient(45deg,#888,#bbb 30%,#666 60%,#aaa)!important}
+  .d-shadow svg{filter:drop-shadow(4px 6px 5px rgba(0,0,0,.5))}
+
+  /* ---------- color ---------- */
+  .pal{grid-template-columns:repeat(3,1fr)}
+  .pal-lg{grid-template-columns:2fr 1fr 1fr}
+  .swatch{border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--cloud)}
+  .swatch .chiparea{height:120px}
+  .swatch .meta{padding:16px 18px}
+  .swatch .nm{font-weight:600;font-size:16px;margin:0 0 2px}
+  .swatch .role{font-size:12.5px;color:var(--sage);margin:0 0 12px;letter-spacing:.02em}
+  .swatch .vals{font-size:12.5px;color:var(--pine);line-height:1.7;font-variant-numeric:tabular-nums}
+  .swatch .vals span{color:var(--sage)}
+  .ratio{display:flex;height:46px;border-radius:12px;overflow:hidden;margin:26px 0 6px;border:1px solid var(--line)}
+  .ratio i{display:block}
+  .ratio-key{display:flex;flex-wrap:wrap;gap:18px;font-size:13px;color:var(--sage)}
+  .ratio-key span{display:inline-flex;align-items:center;gap:8px}
+  .dot{width:12px;height:12px;border-radius:3px;display:inline-block}
+
+  /* ---------- type ---------- */
+  .type-specimen{padding:40px 44px}
+  .type-specimen .big{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(46px,9vw,84px);line-height:1;margin:0 0 6px;letter-spacing:-.02em}
+  .type-specimen .alpha{font-family:"Fraunces",serif;font-size:22px;color:var(--sage);margin:10px 0 0;letter-spacing:.02em}
+  .type-meta{display:flex;flex-wrap:wrap;gap:34px;margin-top:26px;font-size:13.5px;color:var(--sage)}
+  .type-meta b{display:block;color:var(--pine);font-weight:600;font-size:14px}
+  .type-body .big{font-family:"Inter",sans-serif;font-weight:700;font-size:clamp(34px,6vw,56px)}
+  .type-body .alpha{font-family:"Inter",sans-serif}
+  .scale-row{display:flex;align-items:baseline;gap:18px;border-top:1px solid var(--line);padding:14px 0}
+  .scale-row:first-child{border-top:none}
+  .scale-row .lbl{flex:0 0 130px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--sage)}
+  .scale-row .smp{font-family:"Fraunces",serif;color:var(--pine);line-height:1.1}
+
+  /* ---------- voice ---------- */
+  .voice{grid-template-columns:1fr 1fr}
+  .voice .card{padding:30px 32px}
+  .voice h4{margin:0 0 14px;font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+  .voice .yes h4{color:var(--euc)} .voice .no h4{color:#B4544A}
+  .voice ul{margin:0;padding:0;list-style:none}
+  .voice li{padding:9px 0 9px 28px;position:relative;border-top:1px solid var(--line);font-size:15.5px}
+  .voice li:first-child{border-top:none}
+  .voice .yes li::before{content:"";position:absolute;left:0;top:15px;width:13px;height:7px;border-left:2px solid var(--euc);border-bottom:2px solid var(--euc);transform:rotate(-45deg)}
+  .voice .no li::before{content:"\00d7";position:absolute;left:2px;top:8px;color:#B4544A;font-size:18px}
+  .taglines{margin-top:24px}
+  .taglines .t{font-family:"Fraunces",serif;font-size:22px;padding:14px 0;border-top:1px solid var(--line);color:var(--pine)}
+  .taglines .t:first-child{border-top:none}
+  .taglines .t span{color:var(--euc);font-size:13px;font-family:"Inter",sans-serif;letter-spacing:.1em;text-transform:uppercase;margin-left:14px}
+
+  /* ---------- applications ---------- */
+  .apps{grid-template-columns:1fr 1fr;gap:24px}
+  .app{padding:26px;display:flex;flex-direction:column}
+  .app .cap{font-size:12.5px;letter-spacing:.06em;color:var(--sage);text-transform:uppercase;margin:18px 2px 0}
+  .stage{border-radius:14px;overflow:hidden;flex:1;min-height:210px;display:flex;align-items:center;justify-content:center;background:var(--mist)}
+
+  /* business card */
+  .bizwrap{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;width:100%}
+  .bizcard{width:300px;height:172px;border-radius:14px;box-shadow:0 14px 30px -16px rgba(21,48,42,.55);overflow:hidden;position:relative}
+  .bc-front{background:var(--pine);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:18px}
+  .bc-front svg{width:60px;height:60px}
+  .bc-front .nm{font-family:"Fraunces",serif;font-weight:600;font-size:21px;text-align:center;line-height:1.05}
+  .bc-front .tg{font-size:9px;letter-spacing:.22em;color:var(--sun);text-transform:uppercase}
+  .bc-back{background:var(--cloud);padding:20px 22px;display:flex;flex-direction:column;justify-content:center;gap:9px}
+  .bc-back .row{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--pine)}
+  .bc-back .row svg{width:15px;height:15px;flex:0 0 auto;color:var(--euc)}
+  .bc-back .who{font-family:"Fraunces",serif;font-weight:600;font-size:15px;margin-bottom:2px}
+  .bc-back .role{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--euc);margin-bottom:8px}
+
+  /* spray bottle */
+  .bottle{width:120px;height:230px;position:relative;filter:drop-shadow(0 12px 20px rgba(21,48,42,.25))}
+  .bottle .trigger{position:absolute;top:0;left:6px;width:64px;height:46px;background:var(--euc);border-radius:10px 4px 4px 16px}
+  .bottle .nozzle{position:absolute;top:14px;left:-12px;width:26px;height:11px;background:var(--euc-deep);border-radius:4px}
+  .bottle .neck{position:absolute;top:42px;left:34px;width:30px;height:20px;background:#cfe0d8}
+  .bottle .body{position:absolute;top:58px;left:14px;width:92px;height:168px;background:linear-gradient(180deg,#f6faf8,#e7efeb);border-radius:16px 16px 18px 18px;border:1px solid #d7e4dd}
+  .bottle .label{position:absolute;top:80px;left:20px;width:80px;height:118px;background:var(--cloud);border-radius:10px;border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:8px}
+  .bottle .label svg{width:42px;height:42px}
+  .bottle .label .nm{font-family:"Fraunces",serif;font-weight:600;font-size:11px;text-align:center;line-height:1.05;color:var(--pine)}
+  .bottle .label .b{height:3px;width:34px;background:var(--sun);border-radius:2px}
+  .bottle .label .sm{font-size:6.5px;letter-spacing:.14em;color:var(--sage);text-transform:uppercase}
+
+  /* van */
+  .van{width:330px;max-width:100%;height:170px;position:relative}
+  .van .body{position:absolute;left:8px;top:34px;width:286px;height:104px;background:var(--cloud);border:2px solid #dfe8e3;border-radius:14px 26px 10px 10px}
+  .van .cab{position:absolute;left:236px;top:48px;width:64px;height:62px;background:#eef3f1;border:2px solid #dfe8e3;border-radius:8px 22px 6px 6px}
+  .van .window{position:absolute;left:250px;top:54px;width:40px;height:28px;background:#cfe0d8;border-radius:4px 14px 4px 4px}
+  .van .stripe{position:absolute;left:8px;bottom:18px;width:286px;height:18px;background:var(--euc)}
+  .van .wheel{position:absolute;bottom:0;width:34px;height:34px;border-radius:50%;background:var(--pine)}
+  .van .wheel.l{left:54px}.van .wheel.r{left:236px}
+  .van .wheel::after{content:"";position:absolute;inset:11px;border-radius:50%;background:#5a6f68}
+  .van .deco{position:absolute;left:26px;top:50px;display:flex;align-items:center;gap:12px}
+  .van .deco svg{width:54px;height:54px}
+  .van .deco .nm{font-family:"Fraunces",serif;font-weight:600;font-size:21px;color:var(--pine);line-height:1}
+  .van .deco .ph{font-size:11px;color:var(--euc);font-weight:600;letter-spacing:.04em;margin-top:3px}
+
+  /* avatar */
+  .avatar{width:150px;height:150px;border-radius:34px;background:var(--pine);display:grid;place-items:center;box-shadow:0 14px 30px -14px rgba(21,48,42,.6)}
+  .avatar svg{width:92px;height:92px}
+
+  .note{display:flex;gap:12px;align-items:flex-start;background:#FBF1D8;border:1px solid #E9D49B;border-radius:14px;padding:16px 18px;font-size:14.5px;color:#6b561f;margin-top:24px}
+  .note svg{flex:0 0 auto;width:20px;height:20px;color:var(--sun-deep);margin-top:1px}
+
+  footer{background:var(--pine);color:#BFD3CB;padding:60px 0;border-top:none}
+  footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:30px;align-items:flex-end}
+  footer svg{width:64px;height:64px}
+  footer .nm{font-family:"Fraunces",serif;font-weight:600;color:#fff;font-size:24px;margin:14px 0 4px}
+  footer .contact{font-size:14px;line-height:1.8;text-align:right}
+  footer .contact b{color:#fff;font-weight:600}
+
+  @media(max-width:760px){
+    .decode,.specs,.voice,.apps,.pal-lg{grid-template-columns:1fr}
+    .logo-trio,.dont-grid,.pal{grid-template-columns:1fr 1fr}
+    .decode .markbox svg{width:170px;height:170px}
+    section{padding:54px 0}
+    .cover-mark{display:none}
+    footer .wrap{flex-direction:column;align-items:flex-start}
+    footer .contact{text-align:left}
+  }
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<!-- reusable mark symbol -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 120 120">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M 51.87 21.41 Q 60.00 14.00 68.13 21.41 L 98.35 48.94 Q 105.00 55.00 104.30 63.97 L 102.02 93.04 Q 101.00 106.00 88.00 106.00 L 32.00 106.00 Q 19.00 106.00 17.98 93.04 L 15.70 63.97 Q 15.00 55.00 21.65 48.94 Z M 47.00 106.00 L 47.00 79.00 Q 47.00 66.00 60.00 66.00 Q 73.00 66.00 73.00 79.00 L 73.00 106.00 Z" fill="currentColor"/>
+    <path d="M 108.00 29.00 L 96.68 32.68 L 93.00 44.00 L 89.32 32.68 L 78.00 29.00 L 89.32 25.32 L 93.00 14.00 L 96.68 25.32 Z" fill="var(--spk,#F2C879)"/>
+    <path d="M 114.50 52.00 L 109.63 53.63 L 108.00 58.50 L 106.37 53.63 L 101.50 52.00 L 106.37 50.37 L 108.00 45.50 L 109.63 50.37 Z" fill="var(--spk,#F2C879)"/>
+  </symbol>
+</svg>
+
+<!-- ============ COVER ============ -->
+<header class="cover">
+  <svg class="cover-mark" viewBox="0 0 120 120" style="color:#3A7D69"><use href="#mark"/></svg>
+  <div class="wrap">
+    <svg class="covermark-inline" viewBox="0 0 120 120" style="color:#fff"><use href="#mark"/></svg>
+    <p class="eyebrow">Brand Guidelines</p>
+    <h1><span class="lc">Green Clean</span><span class="lc">House</span></h1>
+    <p class="subtitle">The complete visual identity for a residential cleaning service that leaves homes fresher — and lighter on the planet.</p>
+    <div class="docmeta">
+      <div><b>North Bergen, NJ</b>Residential cleaning</div>
+      <div><b>Version 1.0</b>Identity system</div>
+      <div><b>Green · Clean · House</b>One name, one mark</div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ THE IDEA / DECODE ============ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">The idea</p>
+    <h2 class="sec">One mark holds the whole name</h2>
+    <p class="lead">Green Clean House cleans homes the greener way. The logo doesn't decorate that promise — it spells it out. Every part of the symbol maps to one word of the name, so the mark works even when the words aren't there.</p>
+    <div class="decode grid">
+      <div class="markbox"><svg viewBox="0 0 120 120" style="color:var(--euc)"><use href="#mark"/></svg></div>
+      <div>
+        <div class="decode-row">
+          <span class="chip" style="background:var(--euc)">G</span>
+          <div><h4>Green</h4><p>The eucalyptus body of the house — calm, botanical, a nod to plant-based products and a healthier home.</p></div>
+        </div>
+        <div class="decode-row">
+          <span class="chip" style="background:var(--sun);color:var(--pine)">C</span>
+          <div><h4>Clean</h4><p>The two sunbeam sparkles — the visible glint of a room that's just been finished.</p></div>
+        </div>
+        <div class="decode-row">
+          <span class="chip" style="background:var(--pine)">H</span>
+          <div><h4>House</h4><p>The rounded silhouette with an open, welcoming door — every house treated like our own.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOGO ============ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Logo</p>
+    <h2 class="sec">The primary lockup</h2>
+    <p class="lead">The vertical lockup is the default — use it wherever there's room to breathe. The mark sits above the wordmark, set in Fraunces, with the descriptor underneath.</p>
+
+    <div class="logo-main">
+      <svg viewBox="0 0 380 330" role="img" aria-label="Green Clean House primary logo">
+        <svg x="130" y="16" width="120" height="120" viewBox="0 0 120 120" style="color:var(--euc)"><use href="#mark"/></svg>
+        <text x="190" y="208" text-anchor="middle" font-family="Fraunces,serif" font-weight="600" font-size="50" fill="var(--pine)">Green Clean</text>
+        <text x="190" y="256" text-anchor="middle" font-family="Fraunces,serif" font-weight="500" font-size="42" letter-spacing="1" fill="var(--euc)">House</text>
+        <line x1="120" y1="282" x2="260" y2="282" stroke="var(--euc)" stroke-width="1.4"/>
+        <text x="190" y="306" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600" font-size="13" letter-spacing="3" fill="var(--sage)">ECO · FRIENDLY · HOME · CLEANING</text>
+      </svg>
+    </div>
+
+    <div class="grid logo-trio">
+      <div>
+        <div class="logo-main" style="padding:30px;margin-bottom:0;min-height:170px;align-items:center">
+          <svg viewBox="0 0 560 170" aria-label="horizontal logo" style="width:100%">
+            <svg x="8" y="28" width="116" height="116" viewBox="0 0 120 120" style="color:var(--euc)"><use href="#mark"/></svg>
+            <text x="150" y="78" font-family="Fraunces,serif" font-weight="600" font-size="46" fill="var(--pine)">Green Clean</text>
+            <text x="150" y="120" font-family="Fraunces,serif" font-weight="500" font-size="40" letter-spacing="1" fill="var(--euc)">House</text>
+            <line x1="153" y1="138" x2="430" y2="138" stroke="var(--euc)" stroke-width="1.3"/>
+            <text x="153" y="159" font-family="Inter,sans-serif" font-weight="600" font-size="12" letter-spacing="3" fill="var(--sage)">ECO · FRIENDLY · HOME · CLEANING</text>
+          </svg>
+        </div>
+        <p class="tile-cap">Horizontal lockup — for headers, signage, and wide spaces.</p>
+      </div>
+      <div>
+        <div class="swatch-tile on-cloud"><svg viewBox="0 0 120 120" style="color:var(--euc)"><use href="#mark"/></svg></div>
+        <p class="tile-cap">The mark alone — app icons, stamps, favicons, social.</p>
+      </div>
+      <div>
+        <div class="swatch-tile on-pine"><svg viewBox="0 0 120 120" style="color:#fff"><use href="#mark"/></svg></div>
+        <p class="tile-cap">Reversed on Deep Pine — the standard dark application.</p>
+      </div>
+    </div>
+
+    <div class="grid logo-trio" style="margin-top:20px">
+      <div><div class="swatch-tile on-euc"><svg viewBox="0 0 120 120" style="color:#fff;--spk:#fff"><use href="#mark"/></svg></div><p class="tile-cap">White on Eucalyptus.</p></div>
+      <div><div class="swatch-tile on-light"><svg viewBox="0 0 120 120" style="color:var(--pine);--spk:var(--pine)"><use href="#mark"/></svg></div><p class="tile-cap">One-colour Pine — faxes, etching, single-ink print.</p></div>
+      <div><div class="swatch-tile on-pine"><svg viewBox="0 0 120 120" style="color:#fff;--spk:#fff"><use href="#mark"/></svg></div><p class="tile-cap">One-colour white — for photography and dark panels.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLEAR SPACE & MIN SIZE ============ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Spacing &amp; scale</p>
+    <h2 class="sec">Give it room, keep it legible</h2>
+    <div class="grid specs">
+      <div class="card spec-card">
+        <h4 style="margin:0 0 6px;font-family:Fraunces,serif;font-size:20px">Clear space</h4>
+        <p class="muted" style="font-size:15px;margin-bottom:22px">Keep clear space equal to the height of the doorway on all sides. Nothing — type, edges, other logos — enters this zone.</p>
+        <div class="clearbox"><span class="inner"><svg viewBox="0 0 120 120" style="color:var(--euc)"><use href="#mark"/></svg></span></div>
+      </div>
+      <div class="card spec-card">
+        <h4 style="margin:0 0 6px;font-family:Fraunces,serif;font-size:20px">Minimum size</h4>
+        <p class="muted" style="font-size:15px;margin-bottom:22px">The mark stays crisp down to 24&nbsp;px on screen and 9&nbsp;mm in print. Below that, the doorway and sparkles start to fill in.</p>
+        <div class="minrow">
+          <figure class="m1"><svg viewBox="0 0 120 120" style="color:var(--euc)"><use href="#mark"/></svg><figcaption>Comfortable</figcaption></figure>
+          <figure class="m2"><svg viewBox="0 0 120 120" style="color:var(--euc)"><use href="#mark"/></svg><figcaption>Small</figcaption></figure>
+          <figure class="m3"><svg viewBox="0 0 120 120" style="color:var(--euc)"><use href="#mark"/></svg><figcaption>24 px floor</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MISUSE ============ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Misuse</p>
+    <h2 class="sec">Six things never to do</h2>
+    <p class="lead">Consistency is what makes a small business look established. Don't redraw, recolour, or crowd the logo.</p>
+    <div class="grid dont-grid">
+      <div class="card dont d-stretch"><div class="frame"><svg viewBox="0 0 120 120" style="color:var(--euc)"><use href="#mark"/></svg></div><span class="x"><b>×</b> Don't stretch or squash</span></div>
+      <div class="card dont d-rotate"><div class="frame"><svg viewBox="0 0 120 120" style="color:var(--euc)"><use href="#mark"/></svg></div><span class="x"><b>×</b> Don't rotate or tilt</span></div>
+      <div class="card dont"><div class="frame"><svg viewBox="0 0 120 120" style="color:#C0493B;--spk:#C0493B"><use href="#mark"/></svg></div><span class="x"><b>×</b> Don't recolour the mark</span></div>
+      <div class="card dont d-shadow"><div class="frame"><svg viewBox="0 0 120 120" style="color:var(--euc)"><use href="#mark"/></svg></div><span class="x"><b>×</b> Don't add shadows or effects</span></div>
+      <div class="card dont"><div class="frame d-busy"><svg viewBox="0 0 120 120" style="color:#fff"><use href="#mark"/></svg></div><span class="x"><b>×</b> Don't place on busy backgrounds</span></div>
+      <div class="card dont"><div class="frame"><svg viewBox="0 0 120 120" style="color:var(--euc)" transform=""><use href="#mark"/><rect x="34" y="60" width="52" height="10" fill="#C0493B"/></svg></div><span class="x"><b>×</b> Don't add or move elements</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COLOR ============ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Colour</p>
+    <h2 class="sec">A palette that feels fresh and calm</h2>
+    <p class="lead">Eucalyptus and Deep Pine do the heavy lifting; Sunbeam is the spark, used sparingly. Mist and Cloud keep everything open and breathable.</p>
+
+    <div class="grid pal-lg">
+      <div class="swatch">
+        <div class="chiparea" style="background:var(--euc)"></div>
+        <div class="meta">
+          <p class="nm">Eucalyptus</p><p class="role">Primary</p>
+          <p class="vals">HEX <span>#3A7D69</span><br>RGB <span>58 · 125 · 105</span><br>CMYK <span>54 · 0 · 16 · 51</span></p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chiparea" style="background:var(--pine)"></div>
+        <div class="meta">
+          <p class="nm">Deep Pine</p><p class="role">Ink / dark</p>
+          <p class="vals">HEX <span>#15302A</span><br>RGB <span>21 · 48 · 42</span></p>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chiparea" style="background:var(--sun)"></div>
+        <div class="meta">
+          <p class="nm">Sunbeam</p><p class="role">Accent</p>
+          <p class="vals">HEX <span>#F2C879</span><br>RGB <span>242 · 200 · 121</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid pal" style="margin-top:20px">
+      <div class="swatch">
+        <div class="chiparea" style="background:var(--mist)"></div>
+        <div class="meta"><p class="nm">Mist</p><p class="role">Background</p>
+        <p class="vals">HEX <span>#EDF3F0</span><br>RGB <span>237 · 243 · 240</span></p></div>
+      </div>
+      <div class="swatch">
+        <div class="chiparea" style="background:var(--cloud);border-bottom:1px solid var(--line)"></div>
+        <div class="meta"><p class="nm">Cloud</p><p class="role">Surface</p>
+        <p class="vals">HEX <span>#FFFFFF</span><br>RGB <span>255 · 255 · 255</span></p></div>
+      </div>
+      <div class="swatch">
+        <div class="chiparea" style="background:var(--sage)"></div>
+        <div class="meta"><p class="nm">Sage Gray</p><p class="role">Secondary text</p>
+        <p class="vals">HEX <span>#5E726B</span><br>RGB <span>94 · 114 · 107</span></p></div>
+      </div>
+    </div>
+
+    <p class="eyebrow" style="margin-top:40px">Suggested balance</p>
+    <div class="ratio">
+      <i style="background:var(--mist);width:46%"></i>
+      <i style="background:var(--euc);width:30%"></i>
+      <i style="background:var(--pine);width:14%"></i>
+      <i style="background:var(--sun);width:10%"></i>
+    </div>
+    <div class="ratio-key">
+      <span><i class="dot" style="background:var(--mist);border:1px solid var(--line)"></i> Mist / Cloud — 46%</span>
+      <span><i class="dot" style="background:var(--euc)"></i> Eucalyptus — 30%</span>
+      <span><i class="dot" style="background:var(--pine)"></i> Deep Pine — 14%</span>
+      <span><i class="dot" style="background:var(--sun)"></i> Sunbeam — 10%</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TYPOGRAPHY ============ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Typography</p>
+    <h2 class="sec">Fraunces &amp; Inter</h2>
+    <p class="lead">Fraunces brings warmth and craft to the name and headlines; Inter keeps everything else clear and trustworthy at small sizes. Both are free on Google Fonts.</p>
+
+    <div class="card type-specimen" style="margin-bottom:20px">
+      <p class="big">Green Clean House</p>
+      <p class="alpha">Aa Bb Cc Dd Ee Ff Gg &nbsp; 0 1 2 3 4 5 6 7 8 9</p>
+      <div class="type-meta">
+        <div><b>Fraunces</b>Display &amp; wordmark</div>
+        <div><b>Weights</b>500 · 600</div>
+        <div><b>Use for</b>Name, headlines, taglines</div>
+        <div><b>Fallback</b>Georgia, serif</div>
+      </div>
+    </div>
+
+    <div class="card type-specimen type-body" style="margin-bottom:30px">
+      <p class="big">A naturally cleaner home.</p>
+      <p class="alpha">Aa Bb Cc Dd Ee Ff Gg &nbsp; 0 1 2 3 4 5 6 7 8 9</p>
+      <div class="type-meta">
+        <div><b>Inter</b>Body &amp; interface</div>
+        <div><b>Weights</b>400 · 500 · 600</div>
+        <div><b>Use for</b>Paragraphs, labels, contact info</div>
+        <div><b>Fallback</b>system-ui, Arial</div>
+      </div>
+    </div>
+
+    <div class="card spec-card">
+      <div class="scale-row"><span class="lbl">Display</span><span class="smp" style="font-size:44px">Spotless, the greener way</span></div>
+      <div class="scale-row"><span class="lbl">Heading</span><span class="smp" style="font-size:30px;font-weight:600">Booking &amp; services</span></div>
+      <div class="scale-row"><span class="lbl">Subhead</span><span class="smp" style="font-size:21px;font-family:Inter,sans-serif;font-weight:600;color:var(--euc-deep)">Weekly, biweekly &amp; one-time cleans</span></div>
+      <div class="scale-row"><span class="lbl">Body</span><span class="smp" style="font-size:16px;font-family:Inter,sans-serif;font-weight:400;line-height:1.6;color:var(--sage)">We use plant-based products and bring our own supplies, so your home is ready to enjoy the moment we leave.</span></div>
+      <div class="scale-row"><span class="lbl">Label / caps</span><span class="smp" style="font-size:12px;font-family:Inter,sans-serif;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--sage)">Licensed · Insured · North Bergen</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VOICE ============ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Voice &amp; tone</p>
+    <h2 class="sec">Warm, plain-spoken, reassuring</h2>
+    <p class="lead">Talk like a trusted neighbour, not a corporation. Cleaning a home is personal — the voice should feel safe, specific, and free of hype.</p>
+    <div class="grid voice">
+      <div class="card yes">
+        <h4>We sound like</h4>
+        <ul>
+          <li>Friendly and down-to-earth</li>
+          <li>Specific about what's included</li>
+          <li>Calm and reassuring about trust &amp; access</li>
+          <li>Proud of greener, low-tox products</li>
+        </ul>
+      </div>
+      <div class="card no">
+        <h4>We avoid</h4>
+        <ul>
+          <li>Corporate jargon and buzzwords</li>
+          <li>Over-promising or fake urgency</li>
+          <li>Shaming people about mess</li>
+          <li>All-caps shouting and exclamation pile-ups</li>
+        </ul>
+      </div>
+    </div>
+    <div class="taglines card" style="padding:26px 30px">
+      <p class="eyebrow" style="margin-bottom:8px">Tagline options</p>
+      <div class="t">A naturally cleaner home. <span>Primary</span></div>
+      <div class="t">Spotless, the greener way.</div>
+      <div class="t">We bring the clean. You enjoy the home.</div>
+      <div class="t">Green products. Spotless results.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APPLICATIONS ============ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">In the world</p>
+    <h2 class="sec">How it comes together</h2>
+    <p class="lead">A quick look at the identity on the things customers actually see — the card you hand over, the bottle in the caddy, the van at the curb, the avatar online.</p>
+
+    <div class="grid apps">
+      <div class="card app">
+        <div class="stage" style="background:var(--mist);padding:18px">
+          <div class="bizwrap">
+            <div class="bizcard bc-front">
+              <svg viewBox="0 0 120 120" style="color:#fff"><use href="#mark"/></svg>
+              <div class="nm">Green Clean<br>House</div>
+              <div class="tg">Eco-friendly home cleaning</div>
+            </div>
+            <div class="bizcard bc-back">
+              <div>
+                <div class="who">Green Clean House LLC</div>
+                <div class="role">Residential Cleaning</div>
+              </div>
+              <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5l4-1 2 5-3 2a14 14 0 007 7l2-3 5 2-1 4a2 2 0 01-2 2A18 18 0 013 7a2 2 0 010-2z"/></svg> (201) 713-144X</div>
+              <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6-7-11a7 7 0 0114 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg> 130 77th St #3, North Bergen, NJ</div>
+            </div>
+          </div>
+        </div>
+        <p class="cap">Business card — front &amp; back</p>
+      </div>
+
+      <div class="card app">
+        <div class="stage" style="background:linear-gradient(160deg,#e7efeb,#f3f8f6)">
+          <div class="bottle">
+            <div class="trigger"></div><div class="nozzle"></div><div class="neck"></div>
+            <div class="body"></div>
+            <div class="label">
+              <svg viewBox="0 0 120 120" style="color:var(--euc)"><use href="#mark"/></svg>
+              <div class="nm">Green Clean<br>House</div>
+              <div class="b"></div>
+              <div class="sm">All-purpose</div>
+            </div>
+          </div>
+        </div>
+        <p class="cap">Branded supplies — spray bottle label</p>
+      </div>
+
+      <div class="card app">
+        <div class="stage" style="background:linear-gradient(180deg,#eaf1ee,#dfe9e4)">
+          <div class="van">
+            <div class="body"></div>
+            <div class="cab"></div><div class="window"></div>
+            <div class="deco">
+              <svg viewBox="0 0 120 120" style="color:var(--euc)"><use href="#mark"/></svg>
+              <div><div class="nm">Green Clean House</div><div class="ph">(201) 713-144X · North Bergen, NJ</div></div>
+            </div>
+            <div class="stripe"></div>
+            <div class="wheel l"></div><div class="wheel r"></div>
+          </div>
+        </div>
+        <p class="cap">Vehicle decal — service van</p>
+      </div>
+
+      <div class="card app">
+        <div class="stage" style="background:linear-gradient(160deg,#dfe9e4,#eef3f1)">
+          <div class="avatar"><svg viewBox="0 0 120 120" style="color:#fff"><use href="#mark"/></svg></div>
+        </div>
+        <p class="cap">Social avatar — profile &amp; app icon</p>
+      </div>
+    </div>
+
+    <div class="note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/></svg>
+      <div>The phone number in your file was cut off at <b>(201)&nbsp;713-144</b> — I've shown it as <b>144X</b> in the mockups. Swap the <b>X</b> for the real final digit(s) before printing anything.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div>
+      <svg viewBox="0 0 120 120" style="color:#fff"><use href="#mark"/></svg>
+      <div class="nm">Green Clean House LLC</div>
+      <div style="font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--sun)">Eco · Friendly · Home · Cleaning</div>
+    </div>
+    <div class="contact">
+      <b>Green Clean House LLC</b><br>
+      130 77th St #3, North Bergen, NJ<br>
+      (201) 713-144X &nbsp;·&nbsp; mobile<br>
+      <span style="opacity:.7">Brand guidelines v1.0</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
