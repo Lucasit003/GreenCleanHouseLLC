@@ -9,13 +9,14 @@
   },
   "profiles": {
     "topstep_50k": {
-      "name": "Topstep Trading Combine 50K",
+      "name": "Topstep Trading Combine 50K (One Rule)",
+      "_note": "Verified from user's dashboard.topstep.com screenshots (Jul 2026): One-Rule model. Max contracts 5 mini / 50 micro. Daily Loss Limit $1,000 is Responsible-Trading lockout, not a fail. Payout paths: Standard (5x $150 winning days) or Consistency (>=3 days, best day <=40% of profit); the 50% consistency_pct below is the combine consistency target.",
       "account_size": 50000,
       "profit_target": 3000,
       "max_loss_limit": 2000,
       "daily_loss_limit": 1000,
       "max_contracts": 5,
-      "min_trading_days": 2,
+      "min_trading_days": 1,
       "trailing_locks_at_starting_balance": true,
       "on_daily_loss": "lockout",
       "consistency_pct": 0.5
