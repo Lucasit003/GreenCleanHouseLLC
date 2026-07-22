@@ -57,23 +57,38 @@ Architecture decisions are logged in [docs/adr/](docs/adr/).
 
 **Phase 0 — Architecture:** complete (deliverables 1–6).
 
-**Implementation in progress** — the following modules are built and covered by a
-passing test suite (`python -m pytest`, 15 tests, no external infra needed):
+**Complete for paper practice** — every engine except the live Topstep adapter
+is built and covered by a passing test suite (`python -m pytest`, 30 tests, no
+external infra needed):
 
-- **Step 1 — Storage:** in-memory repositories satisfying the `interfaces/`
-  contracts (Postgres implementations behind the same Protocols come next).
-- **Step 2 — Journal Engine:** open/close/annotate with exact futures P&L and
-  R-multiple math.
-- **Step 3 — Statistics Engine v1:** win rate, expectancy, profit factor,
-  drawdown, and per-strategy/session/time slices from the trader's own journal.
-- **Risk Engine** (pulled forward from Step 9): position sizing + authoritative
-  veto — required before autonomy.
-- **Paper Execution Engine + Autopilot:** the system can trade **without a
-  per-trade human click**, in paper by default, behind a human-armed policy and
-  the Risk Engine veto. See **[docs/07](docs/07_AUTONOMOUS_TRADING.md)**.
+- **Storage (1)** — in-memory repositories satisfying the `interfaces/` contracts
+  (Postgres impls behind the same Protocols come later).
+- **Journal (2)** — open/close/annotate with exact futures P&L + R-multiple.
+- **Statistics v1 & v2 (3, 12)** — win rate, expectancy, profit factor, drawdown,
+  Sharpe, sliced by strategy/session/time — from the trader's own journal.
+- **Market Data (5)** — deterministic synthetic provider for offline practice,
+  behind the same `MarketDataProvider` a live feed will use.
+- **Indicators + Market Analysis (6)** — EMA/SMA/ATR/RSI/VWAP and labeled
+  `MarketContext` (trend/structure/volatility/session/levels).
+- **Strategy (7)** — registry + two strategies (trend pullback, breakout), each
+  declaring its ideal/poor conditions.
+- **Backtester (8)** — replays bars through the same pipeline and journals them.
+- **Risk Engine (9)** — position sizing + authoritative veto.
+- **Decision Framework (10)** — composes context + confidence + news + risk into
+  a scored, explainable ENTER / WAIT / AVOID.
+- **News (11)** — economic-calendar blackout windows.
+- **Learning (12)** — overfitting-guarded confidence; proposals only, never
+  touches risk.
+- **Performance Review (13)** — overtrading / revenge-trade detection.
+- **Paper Execution + Autopilot** — trades **without a per-trade click**, paper
+  by default, behind a human-armed policy and the Risk veto. See
+  **[docs/07](docs/07_AUTONOMOUS_TRADING.md)**.
 
-The remaining engines (Market Data/Analysis, Strategy, Decision Framework, News,
-Learning, Performance Review, live Topstep adapter) follow the order in doc 6.
+**Try it:** `python scripts/paper_demo.py` runs the whole thing on synthetic data
+and prints a practice report — no account, no live orders.
+
+**Not built (deliberate):** Step 15, the live Topstep adapter, and the web
+API/Dashboard v2. Live trading stays off until you decide to open an account.
 
 > ⚠️ **Autonomous live trading is OFF by default and gated.** Read
 > [docs/07_AUTONOMOUS_TRADING.md](docs/07_AUTONOMOUS_TRADING.md) — especially the

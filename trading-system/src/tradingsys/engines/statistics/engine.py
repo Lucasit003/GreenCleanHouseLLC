@@ -55,6 +55,17 @@ def _metrics(scope: str, scope_key: Optional[str], trades: Sequence[Trade]) -> P
     ]
     avg_hold = sum(holds) / len(holds) if holds else None
 
+    # Sharpe over per-trade net P&L (v2). Unitless ratio of mean to stdev of
+    # trade returns; needs >= 2 trades and non-zero dispersion.
+    sharpe = None
+    if n >= 2:
+        returns = [float(t.net_pnl) for t in closed]  # type: ignore[arg-type]
+        mean = sum(returns) / n
+        var = sum((r - mean) ** 2 for r in returns) / (n - 1)
+        sd = var ** 0.5
+        if sd > 0:
+            sharpe = round(mean / sd, 4)
+
     return PerformanceMetrics(
         scope=scope,
         scope_key=scope_key,
@@ -65,6 +76,7 @@ def _metrics(scope: str, scope_key: Optional[str], trades: Sequence[Trade]) -> P
         expectancy=expectancy,
         profit_factor=round(profit_factor, 4) if profit_factor is not None else None,
         max_drawdown=max_dd.quantize(Decimal("0.01")),
+        sharpe=sharpe,
         avg_hold_min=round(avg_hold, 2) if avg_hold is not None else None,
     )
 

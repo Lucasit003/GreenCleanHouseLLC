@@ -1,5 +1,12 @@
 # Deliverable 6 — Implementation Order
 
+> **Build status (paper):** Steps 1–3 and 5–13 are implemented and covered by a
+> passing test suite (`python -m pytest`, 30 tests, no external infra). Step 4
+> ships as a text/markdown dashboard (`dashboard/report.py`); Step 14's
+> execution half (paper) is done, its web-API half is deferred. **Step 15 (live
+> Topstep) is intentionally NOT built** — the system is complete for paper
+> practice. Run the whole pipeline with `python scripts/paper_demo.py`.
+
 Build **one tested module at a time**. Each step lists its dependency, exit
 criteria (definition of done), and the tests that must pass before advancing.
 Nothing here is built ahead of its turn — the interfaces already exist, so each

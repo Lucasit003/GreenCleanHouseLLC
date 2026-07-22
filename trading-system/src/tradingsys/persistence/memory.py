@@ -190,7 +190,8 @@ class InMemoryNewsRepository:
         self._events: list[NewsEvent] = []
 
     def upcoming(self, within_minutes: int) -> Sequence[NewsEvent]:
-        now = datetime.utcnow()
+        from datetime import timezone
+        now = datetime.now(timezone.utc)
         return sorted(
             (e for e in self._events if 0 <= (e.event_time - now).total_seconds() <= within_minutes * 60),
             key=lambda e: e.event_time,
