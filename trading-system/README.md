@@ -89,12 +89,15 @@ external infra needed):
   cap) and get a pass/fail evaluation report. See
   **[docs/08](docs/08_TOPSTEP_SIMULATION.md)**.
 
-**Try it:**
-- `python scripts/paper_demo.py` — full pipeline on synthetic data → practice report.
-- `python scripts/topstep_sim.py` — run a Topstep Combine under its rules and see
-  if the simulated trades pass or fail.
+**Run it (on your own computer — see [docs/09](docs/09_RUN_LOCALLY.md)):**
+- `python run.py advise` — tells you the trade right now (places nothing).
+- `python run.py auto` — makes the trades autonomously (PAPER) under your Topstep
+  rules and reports the result.
+- `python run.py report` — paper session + full practice report.
 
-Both are simulations — no account, no live orders.
+Also: `python scripts/topstep_sim.py` (Combine sim) and `python scripts/paper_demo.py`
+(pipeline demo). Everything is PAPER — no account, no live orders — until a data
+feed and broker are connected locally.
 
 **Not built (deliberate):** Step 15, the live Topstep adapter, and the web
 API/Dashboard v2. Live trading stays off until you decide to open an account.
