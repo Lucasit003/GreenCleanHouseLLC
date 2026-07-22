@@ -5,15 +5,23 @@ non-negotiable safety properties:
 
 1. **Paper by default.** The default adapter simulates fills; live execution is
    a deliberate, human-promoted choice.
-2. **No order without a passed risk decision AND human confirmation.** The
-   ``submit`` method requires an approved ``RiskDecision`` and an explicit
-   ``human_confirmed`` flag; implementations must reject anything else.
+2. **No order without a passed risk decision AND a valid authorization.** The
+   ``submit`` method requires an approved ``RiskDecision`` and an
+   ``Authorization`` — either a human confirmation OR an autonomous
+   authorization tied to an armed policy. Implementations must reject anything
+   else. Autonomous execution is explicit and audited; it never fakes a click.
 """
 from __future__ import annotations
 
 from typing import Any, Protocol, runtime_checkable
 
-from ..domain.types import AccountState, Recommendation, RiskDecision, Trade
+from ..domain.types import (
+    AccountState,
+    Authorization,
+    Recommendation,
+    RiskDecision,
+    Trade,
+)
 
 
 @runtime_checkable
@@ -31,13 +39,15 @@ class ExecutionEngine(Protocol):
         self,
         recommendation: Recommendation,
         risk_decision: RiskDecision,
-        *,
-        human_confirmed: bool,
+        authorization: Authorization,
     ) -> Trade:
         """Place an order for an approved recommendation.
 
-        Implementations MUST raise if ``risk_decision.approved`` is False or
-        ``human_confirmed`` is False. Returns the resulting (open) ``Trade``.
+        Implementations MUST raise if ``risk_decision.approved`` is False, or if
+        ``authorization`` is invalid (a human authorization with no actor, or an
+        autonomous authorization with no ``policy_version``/``armed_by``).
+        Returns the resulting (open) ``Trade``, tagged with how it was
+        authorized.
         """
         ...
 

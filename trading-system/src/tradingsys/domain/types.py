@@ -322,3 +322,93 @@ class LearningProposal:
     evidence_sample: int
     created_at: datetime
     requires_human_approval: bool = True
+
+
+# ---------------------------------------------------------------------------
+# Autonomous trading (execution without a per-trade human click)
+# ---------------------------------------------------------------------------
+
+class TradingMode(str, Enum):
+    """How a recommendation gets authorized for execution."""
+    MANUAL = "manual"            # a human confirms every trade
+    AUTONOMOUS = "autonomous"    # an armed policy authorizes trades
+
+
+class AuthorizationKind(str, Enum):
+    HUMAN = "human"
+    AUTONOMOUS = "autonomous"
+
+
+@dataclass(frozen=True)
+class Authorization:
+    """Records HOW an order was authorized — the honest audit trail.
+
+    Autonomous execution never *fakes* a human click; it carries an explicit
+    autonomous authorization tied to the armed policy version and the human who
+    armed it.
+    """
+    kind: AuthorizationKind
+    actor: str                              # username, or 'autopilot'
+    policy_version: Optional[int] = None    # set for autonomous authorizations
+    armed_by: Optional[str] = None          # human who armed the policy
+    note: Optional[str] = None
+
+    @staticmethod
+    def human(user: str, note: Optional[str] = None) -> "Authorization":
+        return Authorization(AuthorizationKind.HUMAN, actor=user, note=note)
+
+    @staticmethod
+    def autonomous(policy_version: int, armed_by: str) -> "Authorization":
+        return Authorization(
+            AuthorizationKind.AUTONOMOUS,
+            actor="autopilot",
+            policy_version=policy_version,
+            armed_by=armed_by,
+        )
+
+
+@dataclass(frozen=True)
+class AutonomousPolicy:
+    """The rules under which the Autopilot may execute WITHOUT a per-trade click.
+
+    A human arms this once (``enabled=True`` + ``armed_by`` set). The Autopilot
+    then auto-executes any recommendation that clears BOTH this policy and the
+    Risk Engine veto. ``live`` defaults to False: autonomy runs in paper unless a
+    human deliberately promotes it. Disarming (``enabled=False``) stops all
+    autonomous execution instantly — the kill switch.
+    """
+    version: int
+    enabled: bool = False                   # armed? default OFF
+    live: bool = False                      # paper unless explicitly promoted
+    min_score: float = 0.60                 # composite quality gate
+    min_confidence: float = 0.55            # strategy-confidence gate
+    allowed_strategies: tuple[str, ...] = ()   # empty = any enabled strategy
+    allowed_sessions: tuple[Session, ...] = ()  # empty = any session
+    block_high_impact_news: bool = True
+    max_trades_per_day: int = 5             # belt-and-suspenders over Risk Engine
+    max_contracts: int = 3
+    armed_by: Optional[str] = None          # REQUIRED human to be active
+    armed_at: Optional[datetime] = None
+
+    @property
+    def is_active(self) -> bool:
+        """Armed only if a human signed off."""
+        return self.enabled and self.armed_by is not None
+
+
+class AutopilotDisposition(str, Enum):
+    EXECUTED = "executed"
+    SKIPPED_DISARMED = "skipped_disarmed"
+    SKIPPED_NOT_ENTER = "skipped_not_enter"
+    SKIPPED_POLICY = "skipped_policy"
+    VETOED_BY_RISK = "vetoed_by_risk"
+
+
+@dataclass(frozen=True)
+class AutopilotOutcome:
+    """The auditable result of one Autopilot evaluation."""
+    disposition: AutopilotDisposition
+    recommendation_id: Optional[int] = None
+    reasons: tuple[str, ...] = ()
+    risk_decision: Optional["RiskDecision"] = None
+    trade: Optional["Trade"] = None

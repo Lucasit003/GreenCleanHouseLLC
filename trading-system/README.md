@@ -49,14 +49,32 @@ built, on purpose:
 | 4 | [docs/04_DATA_SOURCES_AND_APIS.md](docs/04_DATA_SOURCES_AND_APIS.md) | Market data, news, and broker/prop-firm integration |
 | 5 | [docs/05_MODULE_INTERFACES.md](docs/05_MODULE_INTERFACES.md) | The contracts between the 12 engines |
 | 6 | [docs/06_IMPLEMENTATION_ORDER.md](docs/06_IMPLEMENTATION_ORDER.md) | The exact build sequence, one tested module at a time |
+| 7 | [docs/07_AUTONOMOUS_TRADING.md](docs/07_AUTONOMOUS_TRADING.md) | **Trading without a per-trade click** — how, and its hard limits |
 
 Architecture decisions are logged in [docs/adr/](docs/adr/).
 
 ## Current status
 
-**Phase 0 — Architecture.** Deliverables 1–6 above are complete. The `src/`
-tree contains the domain model (`domain/types.py`) and the module interface
-contracts (`interfaces/`) — real, importable Python with **no engine
-implementations yet**. That is deliberate: implementation begins one tested
-module at a time, in the order given in doc 6, starting with the Database +
-Journal Engine.
+**Phase 0 — Architecture:** complete (deliverables 1–6).
+
+**Implementation in progress** — the following modules are built and covered by a
+passing test suite (`python -m pytest`, 15 tests, no external infra needed):
+
+- **Step 1 — Storage:** in-memory repositories satisfying the `interfaces/`
+  contracts (Postgres implementations behind the same Protocols come next).
+- **Step 2 — Journal Engine:** open/close/annotate with exact futures P&L and
+  R-multiple math.
+- **Step 3 — Statistics Engine v1:** win rate, expectancy, profit factor,
+  drawdown, and per-strategy/session/time slices from the trader's own journal.
+- **Risk Engine** (pulled forward from Step 9): position sizing + authoritative
+  veto — required before autonomy.
+- **Paper Execution Engine + Autopilot:** the system can trade **without a
+  per-trade human click**, in paper by default, behind a human-armed policy and
+  the Risk Engine veto. See **[docs/07](docs/07_AUTONOMOUS_TRADING.md)**.
+
+The remaining engines (Market Data/Analysis, Strategy, Decision Framework, News,
+Learning, Performance Review, live Topstep adapter) follow the order in doc 6.
+
+> ⚠️ **Autonomous live trading is OFF by default and gated.** Read
+> [docs/07_AUTONOMOUS_TRADING.md](docs/07_AUTONOMOUS_TRADING.md) — especially the
+> requirement to verify Topstep's automation rules — before enabling `live`.
