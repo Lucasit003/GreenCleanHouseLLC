@@ -1,0 +1,25 @@
+# Non-secret runtime settings. Secrets come from environment variables only
+# (see .env.example). Never put API keys or credentials in this file.
+
+env: dev                       # dev | staging | prod
+
+execution:
+  mode: paper                  # paper | live  — paper is the safe default
+  require_human_confirmation: true   # never send a live order without it
+
+market_data:
+  provider: databento          # adapter key; credentials via env
+  default_timeframe: 5m
+  symbols: [ES, NQ]
+
+news:
+  provider: trading_economics  # adapter key; credentials via env
+  high_impact_blackout_minutes: 15   # window around high-impact events
+
+analytics:
+  min_sample_for_own_data: 30  # trades before trusting own stats over priors
+
+learning:
+  min_sample_for_confidence: 40
+  overfitting_guard: walk_forward
+  never_auto_change_risk: true # enforced in code; here for visibility

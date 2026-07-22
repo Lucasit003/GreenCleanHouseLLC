@@ -1,0 +1,33 @@
+# SACRED risk configuration — seeds the first `risk_rule_versions` row.
+#
+# These values are enforced by the Risk Engine, which holds veto power over
+# every recommendation. They can NEVER be changed automatically: a change is a
+# new version row that requires a human `approved_by`. Adjust the numbers below
+# to match YOUR specific Topstep account size and combine/funded rules.
+#
+# The example values are illustrative placeholders — replace them with the exact
+# limits from your Topstep account agreement before going live.
+
+risk_rules:
+  version: 1
+  proposed_by: bootstrap
+  approved_by: null            # MUST be set by a human before this version is active
+
+  # Hard account limits (account currency, USD)
+  max_daily_loss: 1000.00      # stop trading for the day at this realized loss
+  max_drawdown: 2000.00        # trailing max-loss (Topstep-style)
+  max_weekly_loss: 3000.00
+
+  # Per-trade sizing
+  risk_per_trade_pct: 0.0050   # fraction of account/limit risked per trade (0.5%)
+  max_contracts: 3             # ceiling on contracts per position
+
+  # Activity limits
+  max_daily_trades: 5          # discipline: quality over quantity
+  max_open_positions: 1
+
+  # Extra prop-firm rules passed through as JSON to `rules_json`
+  extra:
+    respect_consistency_rule: true
+    no_trading_in_high_impact_news_blackout: true
+    flatten_before_daily_close: true
