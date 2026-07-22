@@ -84,8 +84,17 @@ external infra needed):
   by default, behind a human-armed policy and the Risk veto. See
   **[docs/07](docs/07_AUTONOMOUS_TRADING.md)**.
 
-**Try it:** `python scripts/paper_demo.py` runs the whole thing on synthetic data
-and prints a practice report — no account, no live orders.
+- **Topstep Combine simulation** — make fake trades under the prop firm's real
+  rules (trailing max loss, daily loss limit, profit target, min days, contract
+  cap) and get a pass/fail evaluation report. See
+  **[docs/08](docs/08_TOPSTEP_SIMULATION.md)**.
+
+**Try it:**
+- `python scripts/paper_demo.py` — full pipeline on synthetic data → practice report.
+- `python scripts/topstep_sim.py` — run a Topstep Combine under its rules and see
+  if the simulated trades pass or fail.
+
+Both are simulations — no account, no live orders.
 
 **Not built (deliberate):** Step 15, the live Topstep adapter, and the web
 API/Dashboard v2. Live trading stays off until you decide to open an account.
