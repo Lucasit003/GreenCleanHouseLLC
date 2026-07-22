@@ -16,7 +16,7 @@
       "max_loss_limit": 2000,
       "daily_loss_limit": 1000,
       "max_contracts": 5,
-      "min_trading_days": 1,
+      "min_trading_days": 2,
       "trailing_locks_at_starting_balance": true,
       "on_daily_loss": "lockout",
       "consistency_pct": 0.5
