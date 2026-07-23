@@ -5,6 +5,7 @@
     python run.py auto        # make the trades autonomously (PAPER) + report
     python run.py report      # run a paper session and show the practice report
     python run.py backtest --csv data/ES.csv   # backtest on REAL historical bars
+    python run.py compare     # bake-off: rank strategies by measured evidence
 
 Options:  --profile topstep_50k   --seed 7   --csv <file>   --tf 5m
 
@@ -76,6 +77,28 @@ def cmd_auto(profile: str, seed: int, show_report: bool,
     print("\n(PAPER — no real orders. Connect a broker locally to trade live; see docs/09)")
 
 
+def cmd_compare(profile: str) -> None:
+    from tradingsys.backtest.tournament import run_tournament
+    from tradingsys.engines.strategy.strategies.breakout import BreakoutStrategy
+    from tradingsys.engines.strategy.strategies.ema_cross import EmaCrossStrategy
+    from tradingsys.engines.strategy.strategies.range_fade import RangeFadeStrategy
+    from tradingsys.engines.strategy.strategies.trend_pullback import TrendPullbackStrategy
+
+    facs = {"trend_pullback": TrendPullbackStrategy, "breakout": BreakoutStrategy,
+            "ema_cross": EmaCrossStrategy, "range_fade": RangeFadeStrategy}
+    scores = run_tournament(facs, profile_key=profile)
+    print(f"{'rank':<5}{'strategy':<16}{'expectancy':>12}{'win%':>7}{'PF':>7}"
+          f"{'avgP&L':>10}{'pass%':>7}{'trades':>8}")
+    print("-" * 72)
+    for i, s in enumerate(scores, 1):
+        m = s.metrics
+        print(f"{i:<5}{s.key:<16}{str(m.expectancy or 0):>12}{(m.win_rate or 0):>7}"
+              f"{(m.profit_factor or 0):>7}{str(s.avg_pnl):>10}"
+              f"{s.combine_pass_rate * 100:>6.0f}%{m.sample_size:>8}")
+    print("\nRanked by measured expectancy (own results), not opinion.")
+    print("⚠ synthetic/paper — 'best here' ≠ 'best live'. Real ranking needs real data over time.")
+
+
 def main() -> None:
     cmd = sys.argv[1] if len(sys.argv) > 1 else "advise"
     profile = _opt("--profile", "topstep_50k")
@@ -90,6 +113,8 @@ def main() -> None:
         cmd_auto(profile, seed, show_report=True, csv_path=csv_path, tf=tf)
     elif cmd == "backtest":
         cmd_auto(profile, seed, show_report=True, csv_path=csv_path, tf=tf)
+    elif cmd == "compare":
+        cmd_compare(profile)
     else:
         print(__doc__)
         sys.exit(1)

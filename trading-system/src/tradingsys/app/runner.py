@@ -77,6 +77,7 @@ def build_system(
     provider: Optional[MarketDataProvider] = None,
     csv_path: Optional[str] = None,
     timeframe: str = "5m",
+    strategy_list: Optional[Sequence[object]] = None,
 ) -> System:
     """Assemble the full engine graph. Swap `provider` for a live adapter later,
     or pass ``csv_path`` to backtest on REAL historical data from a CSV file."""
@@ -103,8 +104,9 @@ def build_system(
     perf = PerformanceReviewEngine(trades)
     news = NewsEngine(InMemoryNewsRepository())
     strategies = StrategyEngine()
-    strategies.register(TrendPullbackStrategy())
-    strategies.register(BreakoutStrategy())
+    for strat in (strategy_list if strategy_list is not None
+                  else [TrendPullbackStrategy(), BreakoutStrategy()]):
+        strategies.register(strat)
     decision = DecisionFramework(risk, learning, news, min_score=0.5, min_confidence_sample=0)
 
     if csv_path is not None:
