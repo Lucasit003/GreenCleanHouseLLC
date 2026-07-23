@@ -78,6 +78,7 @@ def build_system(
     csv_path: Optional[str] = None,
     timeframe: str = "5m",
     strategy_list: Optional[Sequence[object]] = None,
+    risk_per_trade_pct: Decimal = Decimal("0.005"),
 ) -> System:
     """Assemble the full engine graph. Swap `provider` for a live adapter later,
     or pass ``csv_path`` to backtest on REAL historical data from a CSV file."""
@@ -92,7 +93,7 @@ def build_system(
     risk_repo = InMemoryRiskRepository()
     risk_repo.seed_active(ACCOUNT_ID, RiskRules(
         version=1, max_daily_loss=profile.daily_loss_limit,
-        max_drawdown=profile.max_loss_limit, risk_per_trade_pct=Decimal("0.005"),
+        max_drawdown=profile.max_loss_limit, risk_per_trade_pct=risk_per_trade_pct,
         max_daily_trades=100, max_open_positions=1, max_contracts=profile.max_contracts,
         approved_by="local", approved_at=datetime.now(timezone.utc),
     ))
