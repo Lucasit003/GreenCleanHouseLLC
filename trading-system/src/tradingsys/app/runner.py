@@ -75,8 +75,11 @@ def build_system(
     volatility: float = 1.6,
     days: int = 6,
     provider: Optional[MarketDataProvider] = None,
+    csv_path: Optional[str] = None,
+    timeframe: str = "5m",
 ) -> System:
-    """Assemble the full engine graph. Swap `provider` for a live adapter later."""
+    """Assemble the full engine graph. Swap `provider` for a live adapter later,
+    or pass ``csv_path`` to backtest on REAL historical data from a CSV file."""
     profile = load_profiles(CONFIG_DIR / "topstep.json")[profile_key]
     account = TopstepAccount(profile=profile)
 
@@ -104,10 +107,15 @@ def build_system(
     strategies.register(BreakoutStrategy())
     decision = DecisionFramework(risk, learning, news, min_score=0.5, min_confidence_sample=0)
 
-    provider = provider or SyntheticMarketDataProvider(
-        es, seed=seed, start_price=5000, drift=drift, volatility=volatility)
-    start = datetime(2026, 7, 1, tzinfo=timezone.utc)
-    bars = provider.get_history(symbol, "5m", start, start + timedelta(days=days))
+    if csv_path is not None:
+        from ..engines.market_data.csv_provider import CsvMarketDataProvider
+        provider = CsvMarketDataProvider(es, csv_path, timeframe=timeframe)
+        bars = list(provider.all_bars())
+    else:
+        provider = provider or SyntheticMarketDataProvider(
+            es, seed=seed, start_price=5000, drift=drift, volatility=volatility)
+        start = datetime(2026, 7, 1, tzinfo=timezone.utc)
+        bars = list(provider.get_history(symbol, timeframe, start, start + timedelta(days=days)))
 
     return System(profile_key, es, trades, journal, learning, stats, perf,
                   strategies, decision, analysis=MarketAnalysisEngine(),

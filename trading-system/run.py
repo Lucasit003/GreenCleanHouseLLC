@@ -4,8 +4,9 @@
     python run.py advise      # tell me the trade right now (places nothing)
     python run.py auto        # make the trades autonomously (PAPER) + report
     python run.py report      # run a paper session and show the practice report
+    python run.py backtest --csv data/ES.csv   # backtest on REAL historical bars
 
-Options:  --profile topstep_50k   --seed 7
+Options:  --profile topstep_50k   --seed 7   --csv <file>   --tf 5m
 
 Everything is PAPER/simulated until you connect a real data feed and broker
 adapter locally (see docs/09_RUN_LOCALLY.md). Nothing here places a real order.
@@ -47,8 +48,11 @@ def cmd_advise(profile: str, seed: int) -> None:
     print("\n(advisory only — no order placed)")
 
 
-def cmd_auto(profile: str, seed: int, show_report: bool) -> None:
-    system = build_system(profile_key=profile, seed=seed)
+def cmd_auto(profile: str, seed: int, show_report: bool,
+             csv_path: str | None = None, tf: str = "5m") -> None:
+    system = build_system(profile_key=profile, seed=seed, csv_path=csv_path, timeframe=tf)
+    if csv_path:
+        print(f"(real historical data: {csv_path} — {len(system.bars)} bars)\n")
     status = run_auto(system)
     verdict = {"passed": "✅ PASSED", "failed": "❌ FAILED", "active": "… still ACTIVE"}
     print(f"=== {status['profile']} — autonomous PAPER session (seed={seed}) ===\n")
@@ -76,12 +80,16 @@ def main() -> None:
     cmd = sys.argv[1] if len(sys.argv) > 1 else "advise"
     profile = _opt("--profile", "topstep_50k")
     seed = int(_opt("--seed", "7"))
+    csv_path = _opt("--csv", "") or None
+    tf = _opt("--tf", "5m")
     if cmd == "advise":
         cmd_advise(profile, seed)
     elif cmd == "auto":
-        cmd_auto(profile, seed, show_report=False)
+        cmd_auto(profile, seed, show_report=False, csv_path=csv_path, tf=tf)
     elif cmd == "report":
-        cmd_auto(profile, seed, show_report=True)
+        cmd_auto(profile, seed, show_report=True, csv_path=csv_path, tf=tf)
+    elif cmd == "backtest":
+        cmd_auto(profile, seed, show_report=True, csv_path=csv_path, tf=tf)
     else:
         print(__doc__)
         sys.exit(1)
