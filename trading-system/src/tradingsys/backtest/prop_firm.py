@@ -81,7 +81,9 @@ class PropFirmCombineSimulator:
                 continue
 
             # --- flat: evaluate a new entry through the full pipeline ---
-            window = bars[: i + 1]
+            # fixed lookback (indicators only need recent bars) — correct AND
+            # keeps the run O(n) so month-long windows are feasible.
+            window = bars[max(0, i + 1 - 250): i + 1]
             context = self._analysis.analyze(symbol, timeframe, window)
             setups = self._strategies.generate_setups(context, window)
             if not setups:
