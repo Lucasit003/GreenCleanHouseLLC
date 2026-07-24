@@ -34,6 +34,7 @@ class PropFirmCombineSimulator:
         warmup: int = 30,
         commission_per_contract: Decimal = Decimal("0"),  # round-turn $ per contract
         slippage_ticks: int = 0,                          # applied each side
+        scale_size_near_limit: bool = False,              # trade smaller vs. refuse
     ) -> None:
         self._instrument = instrument
         self._analysis = analysis
@@ -44,6 +45,7 @@ class PropFirmCombineSimulator:
         self._warmup = warmup
         self._commission = commission_per_contract
         self._slip = instrument.tick_size * Decimal(slippage_ticks)
+        self._scale = scale_size_near_limit
 
     def _per_contract_risk(self, entry: Decimal, stop: Decimal) -> Decimal:
         return abs(entry - stop) / self._instrument.tick_size * self._instrument.tick_value
@@ -103,8 +105,20 @@ class PropFirmCombineSimulator:
             size = rec.suggested_size
 
             # --- prop-firm gate: trailing MLL, daily lockout, contract cap ---
-            projected_loss = self._per_contract_risk(entry, stop) * Decimal(size)
-            allowed, reasons = self._account.can_trade(size, projected_loss)
+            per_c = self._per_contract_risk(entry, stop)
+            if self._scale and per_c > 0:
+                # trade SMALLER near the limit instead of refusing, so the
+                # account resolves (pass/fail) rather than sitting pinned.
+                room = min(self._account.mll_room, self._account.dll_room)
+                by_room = int(room / per_c) if room > 0 else 0
+                size = max(1, min(size, by_room)) if by_room >= 1 else 1
+                a = self._account
+                allowed = (a.state.value == "active" and not a.locked_today
+                           and 1 <= size <= a.profile.max_contracts)
+                reasons = () if allowed else ("state/lockout/cap",)
+            else:
+                projected_loss = per_c * Decimal(size)
+                allowed, reasons = self._account.can_trade(size, projected_loss)
             if not allowed:
                 blocked += 1
                 continue

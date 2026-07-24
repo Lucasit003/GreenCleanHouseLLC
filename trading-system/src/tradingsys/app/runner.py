@@ -141,6 +141,7 @@ def run_auto(
     *,
     commission_per_contract: Decimal = Decimal("0"),
     slippage_ticks: int = 0,
+    scale_size_near_limit: bool = False,
 ) -> dict:
     """MAKE the trades autonomously under the account rules (paper). Returns the
     Combine status after the session. Pass costs for a realistic run."""
@@ -148,5 +149,6 @@ def run_auto(
         instrument=sys.instrument, analysis=sys.analysis, strategies=sys.strategies,
         decision=sys.decision, journal=sys.journal, account=sys.account,
         commission_per_contract=commission_per_contract, slippage_ticks=slippage_ticks,
+        scale_size_near_limit=scale_size_near_limit,
     )
     return sim.run(symbol, "5m", sys.bars, ACCOUNT_ID)
