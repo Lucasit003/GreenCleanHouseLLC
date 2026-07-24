@@ -42,6 +42,7 @@ class JournalEngine:
         exit_time: datetime,
         exit_price: Decimal,
         exit_reason: Optional[str] = None,
+        fees: Decimal = Decimal("0"),
     ) -> Trade:
         trade = self._trades.get(trade_id)
         if trade is None:
@@ -51,7 +52,7 @@ class JournalEngine:
             raise KeyError(f"instrument {trade.instrument} not found")
 
         gross = contract_pnl(instrument, trade.direction, trade.entry_price, exit_price, trade.quantity)
-        fees = Decimal("0")  # fee model wired when the execution adapter reports it
+        trade.fees = fees
         net = gross - fees
 
         trade.exit_time = exit_time

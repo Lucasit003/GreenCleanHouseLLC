@@ -251,6 +251,7 @@ class Trade:
     exit_time: Optional[datetime] = None
     exit_price: Optional[Decimal] = None
     net_pnl: Optional[Decimal] = None
+    fees: Decimal = Decimal("0")
     risk_amount: Optional[Decimal] = None
     r_multiple: Optional[float] = None
     result: TradeResult = TradeResult.OPEN

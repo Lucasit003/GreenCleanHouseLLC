@@ -135,11 +135,18 @@ def advise(sys: System, symbol: str = "ES") -> tuple[MarketContext, list[Recomme
     return context, recs
 
 
-def run_auto(sys: System, symbol: str = "ES") -> dict:
+def run_auto(
+    sys: System,
+    symbol: str = "ES",
+    *,
+    commission_per_contract: Decimal = Decimal("0"),
+    slippage_ticks: int = 0,
+) -> dict:
     """MAKE the trades autonomously under the account rules (paper). Returns the
-    Combine status after the session."""
+    Combine status after the session. Pass costs for a realistic run."""
     sim = PropFirmCombineSimulator(
         instrument=sys.instrument, analysis=sys.analysis, strategies=sys.strategies,
         decision=sys.decision, journal=sys.journal, account=sys.account,
+        commission_per_contract=commission_per_contract, slippage_ticks=slippage_ticks,
     )
     return sim.run(symbol, "5m", sys.bars, ACCOUNT_ID)

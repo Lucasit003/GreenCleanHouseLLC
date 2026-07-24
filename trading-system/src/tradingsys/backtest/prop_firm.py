@@ -32,6 +32,8 @@ class PropFirmCombineSimulator:
         journal: JournalEngine,
         account: TopstepAccount,
         warmup: int = 30,
+        commission_per_contract: Decimal = Decimal("0"),  # round-turn $ per contract
+        slippage_ticks: int = 0,                          # applied each side
     ) -> None:
         self._instrument = instrument
         self._analysis = analysis
@@ -40,6 +42,8 @@ class PropFirmCombineSimulator:
         self._journal = journal
         self._account = account
         self._warmup = warmup
+        self._commission = commission_per_contract
+        self._slip = instrument.tick_size * Decimal(slippage_ticks)
 
     def _per_contract_risk(self, entry: Decimal, stop: Decimal) -> Decimal:
         return abs(entry - stop) / self._instrument.tick_size * self._instrument.tick_value
@@ -67,7 +71,10 @@ class PropFirmCombineSimulator:
                     elif bar.low <= position["target"]:
                         exit_price = position["target"]
                 if exit_price is not None:
-                    t = self._journal.close_trade(position["trade_id"], bar.ts, exit_price)
+                    # exit fill slips against you; commission charged round-turn
+                    fill = exit_price - self._slip if position["dir"] == "long" else exit_price + self._slip
+                    fees = self._commission * Decimal(position["size"])
+                    t = self._journal.close_trade(position["trade_id"], bar.ts, fill, fees=fees)
                     self._account.record_trade(t)
                     closed += 1
                     position = None
@@ -98,13 +105,16 @@ class PropFirmCombineSimulator:
                 continue
 
             risk_amount = self._per_contract_risk(entry, stop) * Decimal(size)
+            # entry fill slips against you
+            fill_entry = entry + self._slip if rec.direction.value == "long" else entry - self._slip
             trade = self._journal.open_trade(Trade(
                 account_id=account_id, instrument=symbol, direction=rec.direction,
-                quantity=size, entry_time=bar.ts, entry_price=entry, is_paper=True,
+                quantity=size, entry_time=bar.ts, entry_price=fill_entry, is_paper=True,
                 stop_price=stop, target_price=target, strategy_key=setups[0].strategy_key,
                 risk_amount=risk_amount, session=context.session, entry_reason=setups[0].rationale,
             ))
-            position = {"trade_id": trade.id, "dir": rec.direction.value, "stop": stop, "target": target}
+            position = {"trade_id": trade.id, "dir": rec.direction.value, "stop": stop,
+                        "target": target, "size": size}
             opened += 1
 
         return {
