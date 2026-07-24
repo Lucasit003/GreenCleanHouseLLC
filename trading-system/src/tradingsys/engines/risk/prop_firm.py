@@ -130,6 +130,12 @@ class TopstepAccount:
             self.daily_trades = 0
             self.locked_today = False
 
+    def sync_day(self, d: date) -> None:
+        """Advance the account's calendar day as time passes, so the daily loss
+        limit and lockout reset each day even when no trade has closed yet.
+        Must be called as bars advance (not only on trade close)."""
+        self._roll_day(d)
+
     # --- pre-trade gate --------------------------------------------------
     def can_trade(self, contracts: int, projected_loss: Decimal) -> tuple[bool, list[str]]:
         """Would this order be permitted right now? projected_loss is the $ lost

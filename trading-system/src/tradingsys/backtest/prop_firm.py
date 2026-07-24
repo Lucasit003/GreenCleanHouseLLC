@@ -56,6 +56,9 @@ class PropFirmCombineSimulator:
             if self._account.state is not ComboState.ACTIVE:
                 break
             bar = bars[i]
+            # roll the account's calendar day as time passes so the daily loss
+            # limit / lockout reset each day (not only when a trade closes)
+            self._account.sync_day(bar.ts.date())
 
             # --- manage an open position (stop checked before target) ---
             if position is not None:
