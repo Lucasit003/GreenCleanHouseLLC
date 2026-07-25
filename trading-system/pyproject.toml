@@ -1,0 +1,36 @@
+[project]
+name = "tradingsys"
+version = "0.1.0"
+description = "Adaptive AI Futures Trading — research & decision support (Topstep)"
+requires-python = ">=3.11"
+# Phase 0 (architecture) has no runtime deps — the domain model and interface
+# contracts are standard-library only. Dependencies are added per phase as the
+# concrete engines are implemented (see docs/06_IMPLEMENTATION_ORDER.md).
+dependencies = []
+
+[project.optional-dependencies]
+# Added in Phase 1+ when the corresponding module is built:
+#   persistence : ["psycopg[binary]", "SQLAlchemy", "alembic"]
+#   api         : ["fastapi", "uvicorn", "pydantic"]
+#   data        : ["pandas", "numpy", "pyarrow"]
+dev = ["pytest", "mypy", "ruff"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+mypy_path = "src"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"

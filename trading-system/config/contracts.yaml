@@ -1,0 +1,34 @@
+# Futures contract specifications. Seeded into the `instruments` table.
+# Values below are standard, well-known CME specs; verify against the exchange
+# and your data vendor before trusting them in production.
+
+contracts:
+  - symbol: ES
+    name: E-mini S&P 500
+    exchange: CME
+    tick_size: 0.25
+    tick_value: 12.50        # USD per tick per contract
+    currency: USD
+    session_tz: America/Chicago
+    rth_open: "08:30"
+    rth_close: "15:00"
+
+  - symbol: NQ
+    name: E-mini Nasdaq-100
+    exchange: CME
+    tick_size: 0.25
+    tick_value: 5.00
+    currency: USD
+    session_tz: America/Chicago
+    rth_open: "08:30"
+    rth_close: "15:00"
+
+  - symbol: CL
+    name: Crude Oil
+    exchange: NYMEX
+    tick_size: 0.01
+    tick_value: 10.00
+    currency: USD
+    session_tz: America/New_York
+    rth_open: "09:00"
+    rth_close: "14:30"
