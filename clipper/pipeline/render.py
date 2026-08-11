@@ -14,6 +14,11 @@ OUT_H = 1920
 WORDS_PER_CAPTION = 2
 CAPTION_HEIGHT_FRACTION = 0.60  # from the top of the frame
 
+# Arial exists on macOS and Windows, and fontconfig substitutes a metric
+# equivalent (Liberation Sans / DejaVu Sans) on Linux. A Linux-only family
+# name here would silently fall back to an arbitrary font elsewhere.
+CAPTION_FONT = "Arial"
+
 ASS_HEADER = f"""[Script Info]
 ScriptType: v4.00+
 PlayResX: {OUT_W}
@@ -23,7 +28,7 @@ ScaledBorderAndShadow: yes
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Caption,DejaVu Sans,96,&H00FFFFFF,&H00FFFFFF,&H00000000,&H00000000,-1,0,0,0,100,100,0,0,1,6,0,2,60,60,{int(OUT_H * (1 - CAPTION_HEIGHT_FRACTION))},1
+Style: Caption,{CAPTION_FONT},96,&H00FFFFFF,&H00FFFFFF,&H00000000,&H00000000,-1,0,0,0,100,100,0,0,1,6,0,2,60,60,{int(OUT_H * (1 - CAPTION_HEIGHT_FRACTION))},1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
@@ -53,8 +58,14 @@ def build_ass(words: list[Word], clip_start: float, clip_duration: float) -> str
         group = words[i : i + WORDS_PER_CAPTION]
         start = max(0.0, group[0].start - clip_start)
         end = min(clip_duration, group[-1].end - clip_start)
+        # A group lying wholly outside the clip has nothing to show. Emitting
+        # it anyway would produce a Dialogue line whose end precedes its start.
+        if start >= clip_duration or end <= 0:
+            continue
         if end <= start:
             end = min(clip_duration, start + 0.2)
+        if end <= start:
+            continue
         text = _ass_escape(" ".join(w.text for w in group))
         lines.append(
             f"Dialogue: 0,{_ass_time(start)},{_ass_time(end)},Caption,,0,0,0,,{text}"

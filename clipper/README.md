@@ -61,6 +61,24 @@ Filenames are `<score>_<title-slug>.mp4`. `clips.json` is an array of objects wi
 `filename`, `score`, `reason`, `title`, `source_start`, `source_end`, `duration`,
 and the clip's transcript `text`.
 
+## Tests
+
+```bash
+python tests/run.py              # everything
+python tests/run.py pipeline     # just the pure-logic tests
+```
+
+No test runner to install — plain asserts and a small dispatcher. `pytest tests/`
+also works if you happen to have it.
+
+`test_pipeline.py` covers windowing, dedup, cut refinement, crop math, and caption
+generation. `test_integrations.py` stubs `faster-whisper` and the Anthropic client
+to exercise the adapter code — transcript conversion and caching, batching,
+fence-stripping, retry-then-skip — without weights or an API key.
+`test_render.py` shells out to real ffmpeg to render a synthetic clip and checks
+the output is 1080×1920 h264/AAC with captions actually burned into the pixels;
+it skips itself if ffmpeg is missing.
+
 ## How it works
 
 1. **Audio extraction** — ffmpeg streams a 16kHz mono WAV to a temp file, deleted

@@ -26,6 +26,11 @@ def refine(candidate: Candidate, words: list[Word], video_duration: float) -> bo
     first = bisect_left(starts, candidate.start - 1e-6)
     if first >= len(words):
         return False
+    # The first word at or after the window start must actually begin inside
+    # the window; otherwise this window contains no speech of its own and we
+    # would be pulling in a word from past the end.
+    if words[first].start >= candidate.end - 1e-6:
+        return False
 
     last = first
     while last + 1 < len(words) and words[last + 1].end <= candidate.end + 1e-6:
