@@ -130,6 +130,12 @@ def main(argv: list[str] | None = None) -> int:
             )
         scored = score.score_candidates(candidates)
         print(f"  {len(scored)} scored")
+        if not scored:
+            raise SystemExit(
+                "Every scoring batch failed — nothing was scored.\n"
+                "Check the errors above: an invalid ANTHROPIC_API_KEY, no network, "
+                "or a sustained API outage would all look like this."
+            )
         kept = [c for c in scored if c.score >= args.min_score]
         print(f"  {len(kept)} at or above --min-score {args.min_score}")
         selected = score.deduplicate(kept)[: args.count]

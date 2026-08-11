@@ -36,7 +36,7 @@ python clip.py <video_path> [--count 8] [--min-score 6] [--model base] [--dry-ru
 | --- | --- | --- |
 | `--count` | 8 | Max clips to produce |
 | `--min-score` | 6 | Discard candidates scoring below this |
-| `--model` | `base` | Whisper model size (`tiny`, `base`, `small`, `medium`, `large-v3`) |
+| `--model` | `base` | Whisper model size (`tiny`, `base`, `small`, `medium`, `large-v3`), or a path to a local model directory |
 | `--dry-run` | off | Transcribe and score, print the ranked list, render nothing |
 
 Start with `--dry-run`. It gives you the ranked candidate list with timestamps and
@@ -83,7 +83,10 @@ and the clip's transcript `text`.
 
 ## Notes
 
-- The first run downloads the Whisper model weights; later runs reuse them.
+- The first run downloads the Whisper model weights from huggingface.co; later
+  runs reuse the cached copy. To run somewhere without that access, fetch a
+  faster-whisper model once on a connected machine and point `--model` at the
+  directory: `--model /path/to/faster-whisper-base`.
 - Larger `--model` values are slower but noticeably better on crosstalk and
   accents. `base` is a good default for clean single-speaker audio.
 - Reframing is a plain center crop. There is no face tracking or speaker

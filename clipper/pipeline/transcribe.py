@@ -49,7 +49,21 @@ def transcribe(
             "Install dependencies with: pip install -r requirements.txt"
         )
 
-    model = WhisperModel(model_size, device="auto", compute_type="default")
+    try:
+        model = WhisperModel(model_size, device="auto", compute_type="default")
+    except Exception as exc:  # noqa: BLE001 - surface any load failure clearly
+        raise SystemExit(
+            f"Could not load the Whisper model {model_size!r}: {exc}\n\n"
+            "The first run downloads the weights from huggingface.co, so this "
+            "usually means one of:\n"
+            "  - No network access, or a proxy/firewall blocking huggingface.co\n"
+            "  - An unknown model name. Valid sizes: tiny, base, small, medium,\n"
+            "    large-v2, large-v3 (with optional .en variants)\n\n"
+            "To run fully offline, download a faster-whisper model once on a\n"
+            "connected machine and pass the directory instead:\n"
+            f"  python clip.py <video> --model /path/to/faster-whisper-{model_size}"
+        )
+
     segment_iter, _info = model.transcribe(audio_path, word_timestamps=True)
 
     words: list[Word] = []
