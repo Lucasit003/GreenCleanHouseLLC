@@ -1,0 +1,6 @@
+.env
+clips/
+*.transcript.json
+.venv/
+__pycache__/
+*.pyc
